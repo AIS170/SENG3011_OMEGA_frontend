@@ -31,7 +31,7 @@ export default function Signup() {
             if (res.ok && data.user_sub) {
                 setSuccess("Signup Successful");
                 console.log("UserID:", data.user_sub);
-                navigate("/confirm-signup")
+                navigate("/confirm-signup", { state: {username} })
             } else {
                 setError(data?.message || "Signup failed");
                 console.error("Signup error:", res.status, data);

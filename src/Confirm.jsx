@@ -1,13 +1,14 @@
 import React, { use, useState } from "react";
 import ConfirmCodeInput from "./Input";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function ConfirmSignup() {
-    const [username, setUsername] = useState("");
+    const location = useLocation();
+    const [username, setUsername] = useState(location.state?.username || "");
     const [conf_code, setCode] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleConfirmSignup = async (e) => {
         e.preventDefault();
@@ -61,22 +62,12 @@ export default function ConfirmSignup() {
     
                   <form onSubmit={handleConfirmSignup}>
                     <p className="mb-4 text-neutral-600 dark:text-neutral-300">
-                      Please login to your account
+                      Please enter your confirmation code
                     </p>
     
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm text-neutral-700 dark:text-neutral-300">
-                        Username
-                      </label>
-                      <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Enter username"
-                        className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
-                        required
-                      />
-                    </div>
+                    <p className="mb-4 text-sm text-center text-neutral-800 dark:text-white">
+                        Confirming account for: <span className="font-semibold">{username}</span>
+                    </p>
                     <div className="mb-4">
                       <label className="block mb-1 text-sm text-neutral-700 dark:text-neutral-300">
                         Confirmation Code
