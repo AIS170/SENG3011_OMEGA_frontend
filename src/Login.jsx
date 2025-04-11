@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -28,6 +29,15 @@ export default function Login() {
                 setSuccess("Login Successful");
                 console.log("Access Token:", data.access_token);
                 localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("id_token", data.id_token)
+
+                const idToken = localStorage.getItem("id_token");
+                if (idToken) {
+                  const decoded = jwtDecode(idToken);
+                  console.log("User info:", decoded);
+                }
+
+
             } else {
                 setError(data?.message || "Login failed");
                 console.error("Login error:", res.status, data);
@@ -37,7 +47,23 @@ export default function Login() {
             console.error(err);
         }
     }
-    
+
+    const logout = async () => {
+      const accesToken = localStorage.getItem("access_token");
+
+      const res = await fetch(
+        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${accesToken}`
+          }
+        }
+      ).then(() => setSuccess(""))
+      // then redirect to login page / landing page
+    }
+
     return (
         <section className="min-h-screen bg-neutral-200 dark:bg-neutral-700">
           <div className="container mx-auto flex h-full items-center justify-center p-10">
@@ -139,6 +165,8 @@ export default function Login() {
               </div>
             </div>
           </div>
+          <button style={{border: "2px, black, solid"}} onClick={() => logout()}>LOGOUT</button>
         </section>
+
       );
     }
