@@ -1,0 +1,74 @@
+#LandingPageSection1 {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    background-image: url(../images/omegaLogo.jpg);
+    /* filter: blur(8px); */
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    background-size: contain;
+    background-position: center;
+}
+
+#LandingPage_IntroductoryText {
+    position: absolute;
+    top: 40%;
+    border: 2px solid black;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 24px;
+    text-align: center;
+    height: 30%;
+
+}
+
+#LandingPage_OmegaInvesting {
+    font-size: 96px;
+    color: black;
+    display: inline;
+
+}
+
+
+#LandingPageSection2 {
+    background-image: url(../images/stock-market-or-forex-trading-graph-in-graphic-concept-suitable-for-financial-investment-or-economic-trends-business-idea-and-all-art-work-design-abstract-finance-background-illustration-vector.jpg);
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+}
+
+#LandingPage_Analysis {
+    color: white;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    padding: 8px;
+    padding-left: 42px;
+    padding-top: 22px;
+    padding-bottom: 22px;
+   
+}
+
+#GetStartedButton {
+    position: absolute;
+    bottom: 10%;
+    border: 1px solid black;
+    padding: 12px;
+    font-size: 22px;
+    border-radius: 6px;
+}
+
+h2 {
+    font-size: 48px;
+}
+
+h4 {
+    font-size: 26px;
+}
+
+h5 {
+    font-size: 20px;
+}
