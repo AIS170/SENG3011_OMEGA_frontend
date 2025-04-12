@@ -23,8 +23,8 @@ const Service = () => {
 
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
-            title="Recent Stock Analysis"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Stock Analysis History"
+            details="Your history of previously analysed stock information. "
             icon={
               <svg
                 width="36"
@@ -53,8 +53,8 @@ const Service = () => {
             }
           />
           <ServiceCard
-            title="Our Suggestions"
-            details="We dejoy working with discerning clients, people for whom qualuty, service, integrity & aesthetics."
+            title="Get Started"
+            details="For new members. Learn how to use OMEGA to brighten your investing future."
             icon={
               <svg
                 width="36"

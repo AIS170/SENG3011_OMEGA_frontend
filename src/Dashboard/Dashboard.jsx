@@ -4,10 +4,6 @@ export default function Dashboard() {
   return (
     <div>
       <Service />
-
-
-
-      
     </div>
   )
 }
