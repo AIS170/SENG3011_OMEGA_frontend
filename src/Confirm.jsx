@@ -66,7 +66,7 @@ export default function ConfirmSignup() {
                     </p>
     
                     <p className="mb-4 text-sm text-center text-neutral-800 dark:text-white">
-                        Confirming account for: <span className="font-semibold">{username}</span>
+                        <span className="font-semibold">{username}</span>
                     </p>
                     <div className="mb-4">
                       <label className="block mb-1 text-sm text-neutral-700 dark:text-neutral-300">
