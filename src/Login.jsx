@@ -50,22 +50,6 @@ export default function Login() {
         }
     }
 
-    const logout = async () => {
-      const accesToken = localStorage.getItem("access_token");
-
-      const res = await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${accesToken}`
-          }
-        }
-      ).then(() => setSuccess(""))
-      // then redirect to login page / landing page
-    }
-
     return (
         <section className="min-h-screen bg-neutral-200 dark:bg-neutral-700">
           <div className="container mx-auto flex h-full items-center justify-center p-10">
@@ -167,7 +151,6 @@ export default function Login() {
               </div>
             </div>
           </div>
-          <button style={{border: "2px, black, solid"}} onClick={() => logout()}>LOGOUT</button>
         </section>
 
       );
