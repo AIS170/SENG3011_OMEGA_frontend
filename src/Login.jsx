@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router";
 
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -30,7 +32,7 @@ export default function Login() {
                 console.log("Access Token:", data.access_token);
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("id_token", data.id_token)
-
+                navigate('/dashboard')
                 const idToken = localStorage.getItem("id_token");
                 if (idToken) {
                   const decoded = jwtDecode(idToken);
