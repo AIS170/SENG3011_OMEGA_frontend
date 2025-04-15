@@ -1,8 +1,11 @@
 import React from "react";
 import "./Service.css"
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router";
 // Taken from https://tailgrids.com/components/features-services
+
 const Service = () => {
+  const navigate = useNavigate();
   let name = "User";
 
   try {
@@ -11,7 +14,7 @@ const Service = () => {
       const decoded = jwtDecode(idToken);
       name = decoded.name || decoded["cognito: username"] || "User";
     }
-  } catch {
+  } catch (err) {
     console.error("Failed to decode token:", err);
   }
   return (
@@ -62,7 +65,9 @@ const Service = () => {
               >
                 <image className="w-[36px] h-[36px]"href="src/images/analysis-icon.svg"/>
               </svg>
+              
             }
+            onClick={() => navigate("/analysis")}
           />
           <ServiceCard
             title="Get Started"
@@ -78,6 +83,7 @@ const Service = () => {
                 <image className="w-[36px] h-[36px]"href="src/images/suggestion-box-icon.svg"/>
               </svg>
             }
+            onClick={() => navigate("/ai-help")}
           />
         </div>
       </div>
@@ -87,20 +93,21 @@ const Service = () => {
 
 export default Service;
 
-const ServiceCard = ({ icon, title, details }) => {
+const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
-    <>
-      <a href="https://www.youtube.com" className="w-full px-4 md:w-1/2 lg:w-1/3">
-        <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard" >
-          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl" >
-            {icon}
-          </div>
-          <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
-            {title}
-          </h4>
-          <p className="text-body-color dark:text-dark-6">{details}</p>
+    <div
+      onClick={onClick}
+      className="w-full px-4 md:w-1/2 lg:w-1/3 cursor-pointer"
+    >
+      <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
+        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+          {icon}
         </div>
-      </a>
-    </>
+        <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
+          {title}
+        </h4>
+        <p className="text-body-color dark:text-dark-6">{details}</p>
+      </div>
+    </div>
   );
 };

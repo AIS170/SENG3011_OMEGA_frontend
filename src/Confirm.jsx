@@ -1,10 +1,10 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import ConfirmCodeInput from "./Input";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function ConfirmSignup() {
     const location = useLocation();
-    const [username, setUsername] = useState(location.state?.username || "");
+    const [username] = useState(location.state?.username || "");
     const [conf_code, setCode] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
