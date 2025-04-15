@@ -1,0 +1,10 @@
+.serviceCard {
+    background: linear-gradient( orange, rgb(207, 2, 173));
+    background-size: 100% 200%;
+}
+
+.serviceCard:hover {
+    background-position: bottom;
+    cursor: pointer;
+    transition: background-position 0.2s linear;
+}
