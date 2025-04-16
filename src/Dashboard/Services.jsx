@@ -1,6 +1,7 @@
 import React from "react";
 import "./Service.css"
 // Taken from https://tailgrids.com/components/features-services
+
 const Service = () => {
   return (
     <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
