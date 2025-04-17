@@ -128,6 +128,7 @@ export default function Login() {
                       </p>
                       <button
                         type="button"
+                        onClick={() => navigate("/signup")}
                         className="rounded border-2 border-pink-600 px-4 py-1 text-sm font-medium text-pink-600 transition hover:bg-pink-100 dark:hover:bg-neutral-100"
                       >
                         Register

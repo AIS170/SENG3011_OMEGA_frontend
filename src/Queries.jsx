@@ -3,51 +3,10 @@ import { useState } from "react";
 export default function Queries() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  const handleAsk = async () => {
-    setLoading(true);
-    setResponse("");
-
-    try {
-      const res = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer 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", // 🧨 Only for testing!
-        },
-        body: JSON.stringify({
-          model: "gpt-4.1",
-          messages: [
-            { role: "system", content: `
-You are a friendly and knowledgeable assistant at Omega Financials. Omega helps investors make smart decisions using time-series analysis and semantic analysis.
-
-Your job is to guide users who may be confused about how to use the website.
-
-Here is an overview of the website's structure:
-- The **Home page** introduces Omega Financials.
-- The **Signup/Login pages** are where users create or access their accounts.
-- The **Confirm Signup page** is where users verify their email with a confirmation code.
-- The **Dashboard** is the main hub once logged in, with tools and services.
-- The **Analyse a Stock** page shows time-series data (e.g. stock price charts) to help assess a stock.
-- The **Stock History page** (future) will display past stock analyses.
-- The **Get Started** (the page you're on) page allows users to ask what they need help with — this is where you respond with clear guidance based on their query.
-
-Your tone should always be warm, helpful, and clear. Assume the user may not know much about finance or technology.
-` },
-            { role: "user", content: query },
-          ],
-        }),
-      });
-
-      const data = await res.json();
-      setResponse(data.choices?.[0]?.message?.content || "No response");
-    } catch (err) {
-      setResponse("Error occurred");
-      console.error(err);
-    }
-
-    setLoading(false);
+  const handleAsk = () => {
+    // You can replace this with your new logic
+    setResponse("Thank you for your query. We'll get back to you shortly.");
   };
 
   return (
@@ -64,10 +23,9 @@ Your tone should always be warm, helpful, and clear. Assume the user may not kno
       />
       <button
         onClick={handleAsk}
-        disabled={loading}
         className="rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg hover:shadow-xl transition"
       >
-        {loading ? "Asking..." : "Submit"}
+        Submit
       </button>
 
       {response && (
