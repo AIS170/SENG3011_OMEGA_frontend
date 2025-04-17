@@ -31,6 +31,7 @@ export default function Signup() {
       if (res.ok && data.user_sub) {
         setSuccess("Signup Successful");
         console.log("UserID:", data.user_sub);
+        localStorage.setItem("first_login", "true");
         navigate("/confirm-signup", { state: { username } });
       } else {
         setError(data?.message || "Signup failed");

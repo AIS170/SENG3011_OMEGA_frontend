@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,7 +32,7 @@ export default function Login() {
         console.log("Access Token:", data.access_token);
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("id_token", data.id_token);
-
+        navigate("/dashboard");
         const idToken = localStorage.getItem("id_token");
         if (idToken) {
           const decoded = jwtDecode(idToken);
@@ -44,22 +46,6 @@ export default function Login() {
       setError("Something went wrong. Please try again.");
       console.error(err);
     }
-  };
-
-  const logout = async () => {
-    const accesToken = localStorage.getItem("access_token");
-
-    await fetch(
-      "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accesToken}`,
-        },
-      },
-    ).then(() => setSuccess(""));
-    // then redirect to login page / landing page
   };
 
   return (
@@ -145,6 +131,7 @@ export default function Login() {
                   </p>
                   <button
                     type="button"
+                    onClick={() => navigate("/signup")}
                     className="rounded border-2 border-pink-600 px-4 py-1 text-sm font-medium text-pink-600 transition hover:bg-pink-100 dark:hover:bg-neutral-100"
                   >
                     Register
@@ -168,9 +155,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <button style={{ border: "2px, black, solid" }} onClick={() => logout()}>
-        LOGOUT
-      </button>
     </section>
   );
 }
