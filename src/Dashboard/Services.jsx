@@ -1,5 +1,5 @@
 import React from "react";
-import "./Service.css"
+import "./Service.css";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
 // Taken from https://tailgrids.com/components/features-services
@@ -9,7 +9,7 @@ const Service = () => {
   let name = "User";
 
   try {
-    const idToken = localStorage.getItem('id_token');
+    const idToken = localStorage.getItem("id_token");
     if (idToken) {
       const decoded = jwtDecode(idToken);
       name = decoded.name || decoded["cognito: username"] || "User";
@@ -24,7 +24,7 @@ const Service = () => {
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20 text-white">
               <span className="mb-2 block text-lg font-semibold text-primary">
-              Welcome Back {name}
+                Welcome Back {name}
               </span>
               <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
                 Dashboard
@@ -48,7 +48,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/recent-repeat-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/recent-repeat-icon.svg"
+                />
               </svg>
             }
           />
@@ -63,9 +66,11 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/analysis-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/analysis-icon.svg"
+                />
               </svg>
-              
             }
             onClick={() => navigate("/analysis")}
           />
@@ -80,7 +85,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/suggestion-box-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/suggestion-box-icon.svg"
+                />
               </svg>
             }
             onClick={() => navigate("/ai-help")}

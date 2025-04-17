@@ -30,8 +30,12 @@ export default function Queries() {
 
       {response && (
         <div className="mt-6 max-w-xl bg-white dark:bg-neutral-800 p-4 rounded shadow">
-          <h2 className="text-lg font-semibold mb-2 text-neutral-700 dark:text-white">Response:</h2>
-          <p className="text-neutral-600 dark:text-neutral-300 whitespace-pre-line">{response}</p>
+          <h2 className="text-lg font-semibold mb-2 text-neutral-700 dark:text-white">
+            Response:
+          </h2>
+          <p className="text-neutral-600 dark:text-neutral-300 whitespace-pre-line">
+            {response}
+          </p>
         </div>
       )}
     </div>

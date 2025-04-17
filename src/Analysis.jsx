@@ -88,7 +88,9 @@ Your task:
       });
 
       const data = await res.json();
-      setAnalysis(data.choices?.[0]?.message?.content || "No analysis available.");
+      setAnalysis(
+        data.choices?.[0]?.message?.content || "No analysis available.",
+      );
     } catch (error) {
       console.error("Error fetching analysis:", error);
       setAnalysis("Failed to fetch analysis.");

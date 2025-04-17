@@ -6,7 +6,9 @@ export default function Unauthorized() {
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-neutral-100 dark:bg-neutral-900">
-      <h1 className="text-4xl font-bold text-red-600 mb-4">401 - Invalid Access</h1>
+      <h1 className="text-4xl font-bold text-red-600 mb-4">
+        401 - Invalid Access
+      </h1>
       <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-6">
         You are not authorized to view this page.
       </p>
