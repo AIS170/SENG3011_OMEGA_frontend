@@ -1,7 +1,22 @@
 import React from "react";
-import "./Service.css";
+import "./Service.css"
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router";
 // Taken from https://tailgrids.com/components/features-services
+
 const Service = () => {
+  const navigate = useNavigate();
+  let name = "User";
+
+  try {
+    const idToken = localStorage.getItem('id_token');
+    if (idToken) {
+      const decoded = jwtDecode(idToken);
+      name = decoded.name || decoded["cognito: username"] || "User";
+    }
+  } catch (err) {
+    console.error("Failed to decode token:", err);
+  }
   return (
     <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
@@ -9,7 +24,7 @@ const Service = () => {
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20 text-white">
               <span className="mb-2 block text-lg font-semibold text-primary">
-                Welcome Back $$Insert Name$$
+              Welcome Back {name}
               </span>
               <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
                 Dashboard
@@ -33,10 +48,7 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/recent-repeat-icon.svg"
-                />
+                <image className="w-[36px] h-[36px]"href="src/images/recent-repeat-icon.svg"/>
               </svg>
             }
           />
@@ -51,12 +63,11 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/analysis-icon.svg"
-                />
+                <image className="w-[36px] h-[36px]"href="src/images/analysis-icon.svg"/>
               </svg>
+              
             }
+            onClick={() => navigate("/analysis")}
           />
           <ServiceCard
             title="Get Started"
@@ -69,12 +80,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/suggestion-box-icon.svg"
-                />
+                <image className="w-[36px] h-[36px]"href="src/images/suggestion-box-icon.svg"/>
               </svg>
             }
+            onClick={() => navigate("/ai-help")}
           />
         </div>
       </div>
@@ -84,23 +93,21 @@ const Service = () => {
 
 export default Service;
 
-const ServiceCard = ({ icon, title, details }) => {
+const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
-    <>
-      <a
-        href="https://www.youtube.com"
-        className="w-full px-4 md:w-1/2 lg:w-1/3"
-      >
-        <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
-          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
-            {icon}
-          </div>
-          <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
-            {title}
-          </h4>
-          <p className="text-body-color dark:text-dark-6">{details}</p>
+    <div
+      onClick={onClick}
+      className="w-full px-4 md:w-1/2 lg:w-1/3 cursor-pointer"
+    >
+      <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
+        <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
+          {icon}
         </div>
-      </a>
-    </>
+        <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
+          {title}
+        </h4>
+        <p className="text-body-color dark:text-dark-6">{details}</p>
+      </div>
+    </div>
   );
 };
