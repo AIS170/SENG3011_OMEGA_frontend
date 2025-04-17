@@ -4,8 +4,8 @@ import Service from "./Services";
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-[rgb(34,34,34)]">
-      <Navbar currPage={"Dashboard"}/>
+      <Navbar currPage={"Dashboard"} />
       <Service />
     </div>
-  )
+  );
 }
