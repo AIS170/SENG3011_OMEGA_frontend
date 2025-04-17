@@ -1,5 +1,5 @@
 import React from "react";
-import "./Service.css"
+import "./Service.css";
 // Taken from https://tailgrids.com/components/features-services
 const Service = () => {
   return (
@@ -33,7 +33,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/recent-repeat-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/recent-repeat-icon.svg"
+                />
               </svg>
             }
           />
@@ -48,7 +51,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/analysis-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/analysis-icon.svg"
+                />
               </svg>
             }
           />
@@ -63,7 +69,10 @@ const Service = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <image className="w-[36px] h-[36px]"href="src/images/suggestion-box-icon.svg"/>
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="src/images/suggestion-box-icon.svg"
+                />
               </svg>
             }
           />
@@ -78,9 +87,12 @@ export default Service;
 const ServiceCard = ({ icon, title, details }) => {
   return (
     <>
-      <a href="https://www.youtube.com" className="w-full px-4 md:w-1/2 lg:w-1/3">
-        <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard" >
-          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl" >
+      <a
+        href="https://www.youtube.com"
+        className="w-full px-4 md:w-1/2 lg:w-1/3"
+      >
+        <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
+          <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
             {icon}
           </div>
           <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
