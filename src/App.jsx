@@ -9,6 +9,7 @@ import Unauthorized from "./Unauthorised";
 import ProtectedRoute from "./Protected";
 import Analysis from "./Analysis";
 import Queries from "./Queries";
+import StockForecasts from "./StockNews/StockNews";
 
 const App = () => {
   return (
@@ -22,26 +23,31 @@ const App = () => {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Dashboard />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/analysis"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Analysis />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
         <Route
           path="/ai-help"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <Queries />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
+        />
+
+        <Route
+          path="/news-feed"
+          element={<StockForecasts />}
         />
       </Routes>
     </Router>
