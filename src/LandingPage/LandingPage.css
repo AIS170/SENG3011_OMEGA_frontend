@@ -3,22 +3,6 @@
     src: url(../fonts/omega-font.ttf);
 }
 
-@keyframes scroll-fade {
-    from {
-        opacity: 0;
-    }
-    33% {
-        opacity: 1;
-    }
-
-    66% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
 
 #LandingPageSection1 {
     position: relative;
@@ -87,8 +71,6 @@ section {
 
 #LandingPageSection2 {
     background-image: url(../images/stock-market-or-forex-trading-graph-in-graphic-concept-suitable-for-financial-investment-or-economic-trends-business-idea-and-all-art-work-design-abstract-finance-background-illustration-vector.jpg);
-    animation: scroll-fade;
-    animation-timeline: scroll();
 }
 
 #LandingPage_Analysis {
