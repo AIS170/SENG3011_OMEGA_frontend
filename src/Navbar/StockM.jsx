@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
+import Navbar from "./Navbar";
 
 const StockM = () => {
   const [chartData, setChartData] = useState(null);
@@ -296,12 +297,16 @@ const StockM = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4 py-10">
-      <h2 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-white">
-        {chartData ? `${stockName.toUpperCase()} Stock` : "Loading..."}
-      </h2>
-      <div className="w-full max-w-4xl">
-        {chartData ? <Line data={chartData} /> : <p>Loading chart...</p>}
+    <div className="bg-neutral-100 dark:bg-neutral-900 min-h-screen">
+      <Navbar currPage="Stock Market" />
+
+      <div className="flex flex-col items-center justify-center px-4 py-10">
+        <h2 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-white">
+          {chartData ? `${stockName.toUpperCase()} Stock` : "Loading..."}
+        </h2>
+        <div className="w-full max-w-4xl">
+          {chartData ? <Line data={chartData} /> : <p>Loading chart...</p>}
+        </div>
       </div>
     </div>
   );

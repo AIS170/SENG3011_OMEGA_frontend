@@ -10,6 +10,7 @@ import ProtectedRoute from "./Protected";
 import Analysis from "./Analysis";
 import Queries from "./Queries";
 import StockM from "./Navbar/StockM";
+import Profile from "./Profile";
 
 const App = () => {
   return (
@@ -49,6 +50,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <StockM />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
