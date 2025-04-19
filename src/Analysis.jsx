@@ -99,7 +99,7 @@ Your task:
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`, // Replace in dev
+          Authorization: `Bearer ${import.meta.env.VITE_OPEN_AI_KEY}`,
         },
         body: JSON.stringify({
           model: "gpt-4",
