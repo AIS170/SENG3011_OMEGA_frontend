@@ -24,10 +24,10 @@ export default function Analysis() {
   useEffect(() => {
     const labels = rawData.map((d) => d.date);
     const actual = rawData.map((d) =>
-      forecastDates.includes(d.date) ? null : d.price
+      forecastDates.includes(d.date) ? null : d.price,
     );
     const forecast = rawData.map((d) =>
-      forecastDates.includes(d.date) ? d.price : null
+      forecastDates.includes(d.date) ? d.price : null,
     );
     const combined = rawData.map((d) => d.price);
 
@@ -117,7 +117,9 @@ Your task:
       });
 
       const data = await res.json();
-      setAnalysis(data.choices?.[0]?.message?.content || "No analysis available.");
+      setAnalysis(
+        data.choices?.[0]?.message?.content || "No analysis available.",
+      );
     } catch (error) {
       console.error("Error fetching analysis:", error);
       setAnalysis("Failed to fetch analysis.");

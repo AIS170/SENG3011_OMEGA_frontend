@@ -14,270 +14,274 @@ const StockM = () => {
       stock_name: "apple",
       events: [
         {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "244.47000122070312"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/18",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "244.47000122070312",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "244.8699951171875"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/19",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/18",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "245.8300018310547"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/20",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "244.8699951171875",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "245.5500030517578"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/21",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/19",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "247.10000610351562"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/24",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "245.8300018310547",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "247.0399932861328"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/25",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/20",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "240.36000061035156"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/26",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "245.5500030517578",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "237.3000030517578"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/27",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/21",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "241.83999633789062"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/02/28",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "247.10000610351562",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "238.02999877929688"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/03",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/24",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "235.92999267578125"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/04",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "247.0399932861328",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "235.74000549316406"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/05",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/25",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "235.3300018310547"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/06",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "240.36000061035156",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "239.07000732421875"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/07",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/26",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "227.47999572753906"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/10",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "237.3000030517578",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "220.83999633789062"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/11",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/27",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "216.97999572753906"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/12",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "241.83999633789062",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "209.67999267578125"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/13",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/02/28",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "213.49000549316406"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/14",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "238.02999877929688",
           },
-          {
-            "event-type": "stock-ohlc",
-            "attribute": {
-              "stock_name": "apple",
-              "close": "214.0"
-            },
-            "time_object": {
-              "duration": "0",
-              "time-stamp": "2025/03/17",
-              "time-zone": "GMT+11",
-              "duration-unit": "days"
-            }
-          }
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/03",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "235.92999267578125",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/04",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "235.74000549316406",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/05",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "235.3300018310547",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/06",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "239.07000732421875",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/07",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "227.47999572753906",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/10",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "220.83999633789062",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/11",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "216.97999572753906",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/12",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "209.67999267578125",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/13",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "213.49000549316406",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/14",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
+        {
+          "event-type": "stock-ohlc",
+          attribute: {
+            stock_name: "apple",
+            close: "214.0",
+          },
+          time_object: {
+            duration: "0",
+            "time-stamp": "2025/03/17",
+            "time-zone": "GMT+11",
+            "duration-unit": "days",
+          },
+        },
       ],
     };
 
-    const labels = jsonData.events.map(event => event.time_object["time-stamp"]);
-    const dataPoints = jsonData.events.map(event => parseFloat(event.attribute.close));
+    const labels = jsonData.events.map(
+      (event) => event.time_object["time-stamp"],
+    );
+    const dataPoints = jsonData.events.map((event) =>
+      parseFloat(event.attribute.close),
+    );
 
     setStockName(jsonData.stock_name); // 👈 Save stock name to state
     setChartData({

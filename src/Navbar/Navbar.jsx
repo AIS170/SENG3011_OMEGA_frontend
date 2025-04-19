@@ -13,13 +13,16 @@ export default function Navbar({ currPage }) {
     }
 
     try {
-      await fetch("http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
+      await fetch(
+        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
         },
-      });
+      );
     } catch (err) {
       console.error("Logout error:", err);
     }
@@ -31,10 +34,10 @@ export default function Navbar({ currPage }) {
 
   const pages = ["Dashboard", "Stock Market", "Projects", "Calendar"];
   const pageRoutes = {
-    "Dashboard": "/dashboard",
+    Dashboard: "/dashboard",
     "Stock Market": "/stocks",
-    "Projects": "/projects",
-    "Calendar": "/calendar"
+    Projects: "/projects",
+    Calendar: "/calendar",
   };
 
   return (
@@ -50,8 +53,18 @@ export default function Navbar({ currPage }) {
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
-              <svg className="block size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              <svg
+                className="block size-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
               </svg>
             </button>
           </div>
@@ -59,7 +72,11 @@ export default function Navbar({ currPage }) {
           {/* Logo + Tabs */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <img className="h-8 w-auto" src="./omega.png" alt="Omega Financials" />
+              <img
+                className="h-8 w-auto"
+                src="./omega.png"
+                alt="Omega Financials"
+              />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
@@ -89,12 +106,18 @@ export default function Navbar({ currPage }) {
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden"
             >
               <span className="sr-only">View notifications</span>
-              <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022 23.848 23.848 0 0 0 5.454 1.31m5.715 0a3 3 0 1 1-5.715 0"
-              />
+              <svg
+                className="size-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022 23.848 23.848 0 0 0 5.454 1.31m5.715 0a3 3 0 1 1-5.715 0"
+                />
               </svg>
             </button>
 
@@ -115,12 +138,17 @@ export default function Navbar({ currPage }) {
               {clickedProfile && (
                 <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5">
                   <a
-                    onClick={() => navigate('/profile')}
+                    onClick={() => navigate("/profile")}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
                   >
                     Your Profile
                   </a>
-                  <a href="https://discord.gg/wz6EtsHhKR" className="block px-4 py-2 text-sm text-gray-700">Join our Discord <i className="fa-brands fa-discord"></i></a>
+                  <a
+                    href="https://discord.gg/wz6EtsHhKR"
+                    className="block px-4 py-2 text-sm text-gray-700"
+                  >
+                    Join our Discord <i className="fa-brands fa-discord"></i>
+                  </a>
                   <a
                     onClick={handleLogout}
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"

@@ -18,7 +18,8 @@ export default function Profile() {
             Your Profile
           </h2>
           <p className="text-neutral-600 dark:text-neutral-300">
-            Welcome to your profile page. Here you can view and manage your account settings.
+            Welcome to your profile page. Here you can view and manage your
+            account settings.
           </p>
         </div>
       </div>
