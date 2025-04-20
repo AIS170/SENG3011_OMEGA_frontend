@@ -4,7 +4,6 @@ import NewsPanel from "./NewsPanel";
 import Navbar from "../Navbar/Navbar";
 
 export default function StockForecasts() {
-
   const [newsInfo, setNewsInfo] = useState([]);
   const ENDPOINT = `https://zxskle2a1h.execute-api.ap-southeast-2.amazonaws.com/default/omega_fetch_news_stream`;
   const [informationLoaded, setInformationLoaded] = useState(false);
