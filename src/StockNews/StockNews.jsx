@@ -4,7 +4,6 @@ import NewsPanel from "./NewsPanel";
 import Navbar from "../Navbar/Navbar";
 
 export default function StockForecasts() {
-  const [currArticle, setCurrArticle] = useState(0);
 
   const [newsInfo, setNewsInfo] = useState([]);
   const ENDPOINT = `https://zxskle2a1h.execute-api.ap-southeast-2.amazonaws.com/default/omega_fetch_news_stream`;
@@ -37,7 +36,7 @@ export default function StockForecasts() {
       setNewsInfo(currData);
       setInformationLoaded(true);
     }
-  }, []);
+  }, [ENDPOINT]);
 
   if (informationLoaded) {
     return (
@@ -54,7 +53,6 @@ export default function StockForecasts() {
             {newsInfo.map((data, i) => {
               const title = data.title;
               const description = data.description;
-              const keywords = data.keywords;
               const url = data.url;
               const publishedAt = data.published_at;
               const source = data.source;
@@ -64,7 +62,6 @@ export default function StockForecasts() {
                 <NewsPanel
                   title={title}
                   description={description}
-                  keywords={keywords}
                   url={url}
                   imageUrl={imageUrl}
                   publishedAt={publishedAt}

@@ -1,7 +1,6 @@
 export default function NewsPanel({
   title,
   description,
-  keywords,
   url,
   imageUrl,
   publishedAt,
