@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 export default function Navbar({ currPage }) {
   const navigate = useNavigate();
   const [clickedProfile, setClickedProfile] = useState(false);
+  const [clickedMenuButton, setClickedMenuButton] = useState(false);
 
   const handleLogout = async () => {
     const accessToken = localStorage.getItem("access_token");
@@ -41,7 +42,7 @@ export default function Navbar({ currPage }) {
   };
 
   return (
-    <nav className="bg-gray-600 h-fit">
+    <nav className="bg-gray-600 h-fit w-screen">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Mobile Menu Toggle */}
@@ -59,6 +60,7 @@ export default function Navbar({ currPage }) {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
+                onClick={() => setClickedMenuButton((b) => !b)}
               >
                 <path
                   strokeLinecap="round"
@@ -164,23 +166,25 @@ export default function Navbar({ currPage }) {
 
       {/* Mobile Menu */}
       <div className="sm:hidden" id="mobile-menu">
-        <div className="space-y-1 px-2 pt-2 pb-3">
-          {pages.map((pageName) => {
-            const cl =
-              currPage === pageName
-                ? "block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
-                : "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
-            return (
-              <button
-                key={pageName}
-                onClick={() => navigate(pageRoutes[pageName])}
-                className={cl}
-              >
-                {pageName}
-              </button>
-            );
-          })}
-        </div>
+        {clickedMenuButton && (
+          <div className="space-y-1 px-2 pt-2 pb-3">
+            {pages.map((pageName) => {
+              const cl =
+                currPage === pageName
+                  ? "block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white"
+                  : "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
+              return (
+                <button
+                  key={pageName}
+                  onClick={() => navigate(pageRoutes[pageName])}
+                  className={cl}
+                >
+                  {pageName}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
     </nav>
   );
