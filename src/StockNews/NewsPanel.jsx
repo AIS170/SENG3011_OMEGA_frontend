@@ -12,21 +12,22 @@ export default function NewsPanel({
   }
 
   return (
-    <div className="flex relative w-[60%] mx-[12%] mb-[24px] mt-[24px] p-[2%] border-2 border-gray-400">
+    <a href={url} target="_blank" className="flex relative w-[100%] mx-[12%] mb-[4%] p-[2%] hover:shadow-[0_24px_24px_rgba(0,0,0,0.6)] shadow-[0_35px_35px_rgba(0,0,0,0.25)] rounded-4xl bg-white">
       <div className="mt-[1%] flex justify-center items-center w-[40%] p-[2%]">
-        <img className="max-h-[100%]" src={imageUrl} alt={imageUrl} onError={addDefaultImg}/>
+        <img className="max-h-[100%]" src={imageUrl==="" ? "./omega.png" : imageUrl} alt={imageUrl} onError={addDefaultImg}/>
       </div>
       <div className="mt-[1%] w-[60%]">
-        <a href={url} className="underline text-blue-700"><h2 className="text-[26px] text-center px-[14px]">{title}</h2></a>
-        <br></br>
-        <p><b>Snippet:</b></p>
-        <h4>{description}</h4>
+        <a href={url} target="_blank" className="underline text-blue-700"><h2 className="text-[calc(1vh+1.2vw)] text-center px-[14px]">{title}</h2></a>
         <br></br>
 
-        <div><b>Publication Date:</b> {publishedAt.split('T')[0]}</div>
-        <div><b>Source:</b> {source}</div>
+        <p className="text-[calc(0.8vh+1vw)]"><b>Snippet:</b></p>
+        <p className="text-[calc(0.8vh+1vw)]">{description}</p>
+        <br></br>
+
+        <p className="text-[calc(0.8vh+1vw)]"><b>Publication Date:</b> {publishedAt.split('T')[0]}</p>
+        <p className="text-[calc(0.8vh+1vw)]"><b>Source:</b> {source}</p>
       </div>
-    </div>
+    </a>
   )
 
 }

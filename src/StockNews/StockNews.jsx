@@ -4,6 +4,8 @@ import NewsPanel from "./NewsPanel"
 import Navbar from "../Navbar/Navbar"
 
 export default function StockForecasts() {
+  const [currArticle, setCurrArticle] = useState(0);
+
 
   const [newsInfo, setNewsInfo] = useState([])
   const ENDPOINT = `https://zxskle2a1h.execute-api.ap-southeast-2.amazonaws.com/default/omega_fetch_news_stream`
@@ -43,31 +45,34 @@ export default function StockForecasts() {
     return (
       <>
         <Navbar currPage={"News Feed"} />
-        <h1 className="text-[40px] text-center mt-[5%]">Today's News Feed</h1>
-        <div className="flex justify-center flex-wrap">
-          {newsInfo.map((data, i) => {
-            const title = data.title;
-            const description = data.description;
-            const keywords = data.keywords;
-            const url = data.url;
-            const publishedAt = data.published_at;
-            const source = data.source
-            const imageUrl = data.image_url
 
-            return (
-              <NewsPanel
-                title={title} 
-                description={description} 
-                keywords={keywords}
-                url={url}
-                imageUrl={imageUrl}
-                publishedAt={publishedAt}
-                source={source}
-                key={i}
-              />
-            )
-            
-          })}
+        <div className="bg-gray-400">
+          <h1 className="font-bold text-[calc(1.6vh+2.2vw)] px-[4%] py-[3%] mb-[3%] text-center"><span className="py-[3%] shadow-[0_20px_20px_rgba(0,0,0,0.25)] bg-white w-[100%] block">Today's News Feed</span></h1>
+          <div className="flex justify-center flex-wrap bg-black-300">
+            {newsInfo.map((data, i) => {
+              const title = data.title;
+              const description = data.description;
+              const keywords = data.keywords;
+              const url = data.url;
+              const publishedAt = data.published_at;
+              const source = data.source
+              const imageUrl = data.image_url
+
+              return (
+                <NewsPanel
+                  title={title} 
+                  description={description} 
+                  keywords={keywords}
+                  url={url}
+                  imageUrl={imageUrl}
+                  publishedAt={publishedAt}
+                  source={source}
+                  key={i}
+                />
+              )
+              
+            })}
+          </div>
         </div>
       </>
     )
@@ -75,7 +80,7 @@ export default function StockForecasts() {
     return (
       <>
         <Navbar currPage="News Feed"/>
-        <div className="mt-[20%] text-[42px] flex justify-center align-items">
+        <div className="mt-[20%] text-[calc(2.0vh+2.6vw)] flex justify-center align-items">
           <span>Loading News ...</span>
         </div>
       </>
