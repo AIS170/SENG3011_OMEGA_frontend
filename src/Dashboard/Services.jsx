@@ -36,63 +36,71 @@ const Service = () => {
           </div>
         </div>
 
-        <div className="-mx-4 flex flex-wrap">
-          <ServiceCard
-            title="Stock Analysis History"
-            details="Your history of previously analysed stock information. "
-            icon={
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/recent-repeat-icon.svg"
-                />
-              </svg>
-            }
-          />
-          <ServiceCard
-            title="Analyse a Stock"
-            details="Get help in deciding whether a stock is right for you based on what its recent performance in the stock market and current news surrounding the stock."
-            icon={
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/analysis-icon.svg"
-                />
-              </svg>
-            }
-            onClick={() => navigate("/analysis")}
-          />
-          <ServiceCard
-            title="Get Started"
-            details="For new members. Learn how to use OMEGA to brighten your investing future."
-            icon={
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="src/images/suggestion-box-icon.svg"
-                />
-              </svg>
-            }
-            onClick={() => navigate("/ai-help")}
-          />
+        <div className="-mx-4 flex flex-wrap gap-8 justify-center">
+
+            <ServiceCard
+              title="Stock Analysis History"
+              details="Your history of previously analysed stock information. "
+              icon={
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <image
+                    className="w-[36px] h-[36px]"
+                    href="src/images/recent-repeat-icon.svg"
+                  />
+                </svg>
+              }
+            />
+
+
+
+            <ServiceCard
+              title="Analyse a Stock"
+              details="Get help in deciding whether a stock is right for you based on what its recent performance in the stock market and current news surrounding the stock."
+              icon={
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <image
+                    className="w-[36px] h-[36px]"
+                    href="src/images/analysis-icon.svg"
+                  />
+                </svg>
+              }
+              onClick={() => navigate("/analysis")}
+            />
+
+
+
+            <ServiceCard
+              title="Get Started"
+              details="For new members. Learn how to use OMEGA to brighten your investing future."
+              icon={
+                <svg
+                  width="36"
+                  height="36"
+                  viewBox="0 0 36 36"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <image
+                    className="w-[36px] h-[36px]"
+                    href="src/images/suggestion-box-icon.svg"
+                  />
+                </svg>
+              }
+              onClick={() => navigate("/ai-help")}
+            />
+
         </div>
       </div>
     </section>
@@ -103,11 +111,8 @@ export default Service;
 
 const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
-    <div
-      onClick={onClick}
-      className="w-full px-4 md:w-1/2 lg:w-1/3 cursor-pointer"
-    >
-      <div className="mb-9 rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
+
+      <div className="mb-9 w-[25vw] h-[34vh] rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
         <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
           {icon}
         </div>
@@ -116,6 +121,6 @@ const ServiceCard = ({ icon, title, details, onClick }) => {
         </h4>
         <p className="text-body-color dark:text-dark-6">{details}</p>
       </div>
-    </div>
+
   );
 };
