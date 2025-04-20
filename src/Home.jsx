@@ -9,8 +9,7 @@ import ScrollButton from "./ScrollButton/ScrollButton";
 // added gap-[20px] to first div element - put some gap between the OMEGA gif and the Get Started Button
 // Changed colour of shadow when the Get Started bttn is hovered over
 
-// Found a "UseIsVisible (IsVisible.jsx) Hook which helps for 'fade in' transitions
-//      Section element has a screen-sized image
+// Added left and right navigation buttons to navigate to next sections of the home page
 export default function Home() {
   const navigate = useNavigate();
   const coverRef = useRef()
@@ -18,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <div style={{ overflowY: "hidden", height: "100vh" }}>
+      <div style={{ overflowY: "scroll", height: "100vh" }}>
         <div className="fixed z-100">
           <Navbar currPage={"Home"} />
         </div>
@@ -36,7 +35,7 @@ export default function Home() {
             Get Started
           </button>
           <div className="absolute bottom-[10%]">
-            <ScrollButton left={false} right={true} rightRef={section2Ref} />
+            <ScrollButton left={false} right={true} rightRef={section2Ref} rightText={"Invest with confidence"}/>
           </div>
         </div>
 
@@ -49,7 +48,7 @@ export default function Home() {
             </h5>
           </div>
           <div className="absolute bottom-[10%]">
-            <ScrollButton left={true} right={false} leftRef={coverRef} />
+            <ScrollButton left={true} right={false} leftRef={coverRef} leftText={"OMEGA"} />
           </div>
         </section>
       </div>
