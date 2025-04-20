@@ -10,6 +10,8 @@ import ProtectedRoute from "./Protected";
 import Analysis from "./Analysis";
 import Queries from "./Queries";
 import StockForecasts from "./StockNews/StockNews";
+import StockM from "./Navbar/StockM";
+import Profile from "./Profile";
 
 const App = () => {
   return (
@@ -46,6 +48,22 @@ const App = () => {
         />
 
         <Route path="/news-feed" element={<StockForecasts />} />
+        <Route
+          path="/stocks"
+          element={
+            <ProtectedRoute>
+              <StockM />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -1,13 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
 
 const rawData = [
   { date: "2025-01-01", price: 20 },
@@ -23,16 +16,52 @@ const rawData = [
 
 const forecastDates = ["2025-01-08", "2025-01-09"];
 
-const chartData = rawData.map((d) => ({
-  date: d.date,
-  price: forecastDates.includes(d.date) ? null : d.price,
-  forecast: forecastDates.includes(d.date) ? d.price : null,
-  combined: d.price,
-}));
-
 export default function Analysis() {
+  const [chartData, setChartData] = useState(null);
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const labels = rawData.map((d) => d.date);
+    const actual = rawData.map((d) =>
+      forecastDates.includes(d.date) ? null : d.price,
+    );
+    const forecast = rawData.map((d) =>
+      forecastDates.includes(d.date) ? d.price : null,
+    );
+    const combined = rawData.map((d) => d.price);
+
+    setChartData({
+      labels,
+      datasets: [
+        {
+          label: "AAPL Combined",
+          data: combined,
+          borderColor: "#8884d8",
+          backgroundColor: "rgba(136, 132, 216, 0.2)",
+          tension: 0.3,
+          pointRadius: 0,
+          hidden: false, // hide unless debugging
+        },
+        {
+          label: "Actual",
+          data: actual,
+          borderColor: "#8884d8",
+          backgroundColor: "rgba(136, 132, 216, 0.3)",
+          tension: 0.3,
+          pointRadius: 4,
+        },
+        {
+          label: "Forecast",
+          data: forecast,
+          borderColor: "#ff4d4f",
+          backgroundColor: "rgba(255, 77, 79, 0.2)",
+          tension: 0.3,
+          pointRadius: 6,
+        },
+      ],
+    });
+  }, []);
 
   const fetchAnalysis = async () => {
     setLoading(true);
@@ -70,7 +99,7 @@ Your task:
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer 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`, // Replace with real key during dev
+          Authorization: `Bearer ${import.meta.env.VITE_OPEN_AI_KEY}`,
         },
         body: JSON.stringify({
           model: "gpt-4",
@@ -106,46 +135,48 @@ Your task:
   return (
     <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4 py-10">
       <h1 className="text-3xl font-bold text-center mb-6 text-neutral-800 dark:text-white">
-        AAPL Stock Analysis (Placeholder)
+        AAPL Stock Analysis (Chart.js)
       </h1>
 
-      <div className="w-full max-w-4xl h-96 mb-10">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
+      <div className="w-full max-w-4xl bg-white dark:bg-neutral-800 rounded-lg shadow p-6 mb-10">
+        {chartData ? (
+          <Line
             data={chartData}
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" stroke="#8884d8" />
-            <YAxis stroke="#8884d8" />
-            <Tooltip />
-            <Line
-              type="linear"
-              dataKey="combined"
-              stroke="#8884d8"
-              strokeWidth={2}
-              dot={false}
-              activeDot={false}
-              connectNulls={true}
-            />
-            <Line
-              type="linear"
-              dataKey="price"
-              stroke="#8884d8"
-              strokeWidth={2}
-              dot
-              name="Actual"
-            />
-            <Line
-              type="linear"
-              dataKey="forecast"
-              stroke="#ff4d4f"
-              strokeWidth={2}
-              dot={{ r: 6 }}
-              name="Forecast"
-            />
-          </LineChart>
-        </ResponsiveContainer>
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  mode: "index",
+                  intersect: false,
+                  callbacks: {
+                    label: function (context) {
+                      return `$${context.parsed.y}`;
+                    },
+                  },
+                },
+                legend: {
+                  position: "top",
+                },
+              },
+              scales: {
+                x: {
+                  title: {
+                    display: true,
+                    text: "Date",
+                  },
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: "Price ($)",
+                  },
+                },
+              },
+            }}
+          />
+        ) : (
+          <p>Loading chart...</p>
+        )}
       </div>
 
       <div className="w-full max-w-4xl bg-white dark:bg-neutral-800 rounded-lg shadow p-6">
