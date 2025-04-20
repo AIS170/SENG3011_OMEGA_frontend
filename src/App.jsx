@@ -45,10 +45,7 @@ const App = () => {
           }
         />
 
-        <Route
-          path="/news-feed"
-          element={<StockForecasts />}
-        />
+        <Route path="/news-feed" element={<StockForecasts />} />
       </Routes>
     </Router>
   );
