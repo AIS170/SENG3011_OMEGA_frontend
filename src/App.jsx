@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "./login";
+import Login from "./Login";
 import Signup from "./Signup";
 import ConfirmSignup from "./Confirm";
 import Dashboard from "./Dashboard/Dashboard";
@@ -9,7 +9,7 @@ import Unauthorized from "./Unauthorised";
 import ProtectedRoute from "./Protected";
 import Analysis from "./Analysis";
 import Queries from "./Queries";
-import LandingPage from "./LandingPage/LandingPage";
+import StockForecasts from "./StockNews/StockNews";
 import StockM from "./Navbar/StockM";
 import Profile from "./Profile";
 
@@ -46,6 +46,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/news-feed" element={<StockForecasts />} />
         <Route
           path="/stocks"
           element={
