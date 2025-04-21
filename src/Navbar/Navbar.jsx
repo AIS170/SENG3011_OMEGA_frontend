@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+// import { ReactComponent as OmegaLogo } from "src/images/omega.svg";
 
 export default function Navbar({ currPage }) {
   const navigate = useNavigate();
@@ -14,16 +15,13 @@ export default function Navbar({ currPage }) {
     }
 
     try {
-      await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/logout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+      await fetch("https://auth.omega-financials.com/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
-      );
+      });
     } catch (err) {
       console.error("Logout error:", err);
     }
@@ -76,7 +74,7 @@ export default function Navbar({ currPage }) {
             <div className="flex shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="./omega.png"
+                src="./omega.svg"
                 alt="Omega Financials"
               />
             </div>

@@ -15,16 +15,13 @@ export default function Login() {
     setSuccess("");
 
     try {
-      const res = await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
+      const res = await fetch("https://auth.omega-financials.com/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ username, password }),
+      });
 
       const data = await res.json();
       if (res.ok && data.access_token) {
