@@ -105,7 +105,10 @@ export default Service;
 
 const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
-    <div onClick={() => onClick()} className="mb-9 w-[25vw] h-[34vh] rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard">
+    <div
+      onClick={() => onClick()}
+      className="mb-9 w-[25vw] h-[34vh] rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard"
+    >
       <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
         {icon}
       </div>
