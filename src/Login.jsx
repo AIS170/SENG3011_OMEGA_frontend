@@ -16,7 +16,7 @@ export default function Login() {
 
     try {
       const res = await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/login",
+        "https://auth.omega-financials.com/login",
         {
           method: "POST",
           headers: {
