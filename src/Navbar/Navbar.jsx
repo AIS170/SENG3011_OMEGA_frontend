@@ -15,16 +15,13 @@ export default function Navbar({ currPage }) {
     }
 
     try {
-      await fetch(
-        "https://auth.omega-financials.com/logout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+      await fetch("https://auth.omega-financials.com/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
-      );
+      });
     } catch (err) {
       console.error("Logout error:", err);
     }
