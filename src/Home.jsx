@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage/LandingPage.css";
-import { useIsVisible } from "./IsVisible";
 import Navbar from "./Navbar/Navbar";
 import ScrollButton from "./ScrollButton/ScrollButton";
 
@@ -12,7 +11,7 @@ import ScrollButton from "./ScrollButton/ScrollButton";
 // Added left and right navigation buttons to navigate to next sections of the home page
 export default function Home() {
   const navigate = useNavigate();
-  const coverRef = useRef()
+  const coverRef = useRef();
   const section2Ref = useRef();
 
   return (
@@ -22,7 +21,10 @@ export default function Home() {
           <Navbar currPage={"Home"} />
         </div>
 
-        <div ref={coverRef} className="flex min-h-screen items-center flex-wrap items-center-safe justify-center bg-black gap-[2%]">
+        <div
+          ref={coverRef}
+          className="flex min-h-screen items-center flex-wrap items-center-safe justify-center bg-black gap-[2%]"
+        >
           <img
             src="/omega.gif"
             alt="Omega Logo Animation"
@@ -35,7 +37,12 @@ export default function Home() {
             Get Started
           </button>
           <div className="absolute bottom-[10%]">
-            <ScrollButton left={false} right={true} rightRef={section2Ref} rightText={"Invest with confidence"}/>
+            <ScrollButton
+              left={false}
+              right={true}
+              rightRef={section2Ref}
+              rightText={"Invest with confidence"}
+            />
           </div>
         </div>
 
@@ -48,7 +55,12 @@ export default function Home() {
             </h5>
           </div>
           <div className="absolute bottom-[10%]">
-            <ScrollButton left={true} right={false} leftRef={coverRef} leftText={"OMEGA"} />
+            <ScrollButton
+              left={true}
+              right={false}
+              leftRef={coverRef}
+              leftText={"OMEGA"}
+            />
           </div>
         </section>
       </div>
