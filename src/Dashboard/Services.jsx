@@ -107,15 +107,15 @@ const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
     <div
       onClick={() => onClick()}
-      className="mb-9 w-[25vw] h-[34vh] rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard"
+      className="min-w-[300px] min-h-[200px] mb-9 w-[25vw] h-[38vh] rounded-[20px] p-10 shadow-4 hover:shadow-lg hover:shadow-purple-100 dark:bg-dark-2 md:px-7 xl:px-10 serviceCard"
     >
       <div className="mb-8 flex h-[70px] w-[70px] items-center justify-center rounded-2xl">
         {icon}
       </div>
-      <h4 className="mb-[14px] text-2xl font-semibold text-dark dark:text-white">
+      <h4 className="mb-[14px] text-[calc(1.6vh+0.6vw)] font-semibold text-dark dark:text-white">
         {title}
       </h4>
-      <p className="text-body-color dark:text-dark-6">{details}</p>
+      <p className="text-body-color dark:text-dark-6 text-[calc(1.2vh+0.4vw)]">{details}</p>
     </div>
   );
 };
