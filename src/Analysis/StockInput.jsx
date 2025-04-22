@@ -45,7 +45,9 @@ export default function StockInput() {
     // console.log(newsCollection);
 
     // Retrieval
-    console.log(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`)
+    console.log(
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`,
+    );
     const stockDataRetrieval = await fetch(
       `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}/`,
     ).then((res) => res.json());
