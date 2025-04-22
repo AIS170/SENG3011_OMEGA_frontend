@@ -27,6 +27,7 @@ export default function ForgotPasswordConf() {
     e.preventDefault();
     setError("");
     setSuccess("");
+    setResendConf(false);
     try {
       const res = await fetch("https://auth.omega-financials.com/resend_confirmation_code", {
         method: "POST",
