@@ -13,6 +13,7 @@ import StockForecasts from "./StockNews/StockNews";
 import StockM from "./Navbar/StockM";
 import Profile from "./Profile";
 import StockInput from "./Analysis/StockInput";
+import StockHistory from "./StockHistory/StockHistory";
 
 const App = () => {
   return (
@@ -48,7 +49,23 @@ const App = () => {
           }
         />
 
-        <Route path="/news-feed" element={<StockForecasts />} />
+        <Route 
+          path="/history" 
+          element={
+            <ProtectedRoute>
+              <StockHistory />
+            </ProtectedRoute>
+          } 
+        />
+        
+        <Route 
+          path="/news-feed" 
+          element={
+            <ProtectedRoute>
+              <StockForecasts />
+            </ProtectedRoute>
+          } 
+        />
         <Route
           path="/stocks"
           element={
