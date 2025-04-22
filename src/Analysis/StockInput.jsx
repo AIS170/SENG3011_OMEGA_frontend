@@ -7,8 +7,7 @@ import moment from "moment";
 // Button taken from https://v1.tailwindcss.com/components/buttons
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
-const ANALYSIS_ENDPOINT =
-  "http://analytics-load-balancer-2055996024.ap-southeast-2.elb.amazonaws.com";
+const ANALYSIS_ENDPOINT = "https://analytics.omega-financials.com";
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [error, setError] = useState(false);
