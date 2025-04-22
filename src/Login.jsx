@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
+import textToSpeech from "./hooks/textToSpeech";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -8,6 +9,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+  const speak = textToSpeech();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -43,6 +45,11 @@ export default function Login() {
       setError("Something went wrong. Please try again.");
       console.error(err);
     }
+  };
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
   };
 
   return (
@@ -152,6 +159,15 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+      {/* Button to toggle text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
+      </button>
     </section>
   );
 }

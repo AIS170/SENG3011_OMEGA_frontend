@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Navbar from "./Navbar";
 import { getUsername } from "../getUserDetails";
+import textToSpeech from "../hooks/textToSpeech";
 
 export default function StockM() {
   const [company, setCompany] = useState("");
@@ -11,6 +12,7 @@ export default function StockM() {
   const [loading, setLoading] = useState(false);
 
   const username = getUsername();
+  const speak = textToSpeech();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -53,6 +55,11 @@ export default function StockM() {
     }
   };
 
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
+
   return (
     <>
       <Navbar currPage="Stock Market" />
@@ -93,6 +100,15 @@ export default function StockM() {
             <Line data={stockData} />
           </div>
         )}
+
+        {/* Button to toggle text-to-speech */}
+        <button
+          onClick={handleReadPage}
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+          aria-label="Toggle text to speech"
+        >
+          🗣️
+        </button>
       </div>
     </>
   );

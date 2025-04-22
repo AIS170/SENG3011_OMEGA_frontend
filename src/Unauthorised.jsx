@@ -1,8 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import textToSpeech from "./hooks/textToSpeech";
 
 export default function Unauthorized() {
   const navigate = useNavigate();
+  const speak = textToSpeech();
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-neutral-100 dark:bg-neutral-900">
@@ -17,6 +24,15 @@ export default function Unauthorized() {
         className="rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg hover:shadow-xl transition"
       >
         Go to Login
+      </button>
+
+      {/* Button to toggle text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
       </button>
     </div>
   );

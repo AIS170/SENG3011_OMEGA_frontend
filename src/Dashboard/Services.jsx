@@ -1,9 +1,10 @@
 import React from "react";
-import "./Service.css";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
-// Taken from https://tailgrids.com/components/features-services
+import { jwtDecode } from "jwt-decode";
+import textToSpeech from "../hooks/textToSpeech";
+import "./Service.css";
 
+// Service component
 const Service = () => {
   const navigate = useNavigate();
   let name = "User";
@@ -17,6 +18,14 @@ const Service = () => {
   } catch (err) {
     console.error("Failed to decode token:", err);
   }
+
+  const speak = textToSpeech();
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
+
   return (
     <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
@@ -96,12 +105,20 @@ const Service = () => {
           />
         </div>
       </div>
+
+      {/* Button to trigger text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
+      </button>
     </section>
   );
 };
 
-export default Service;
-
+// ServiceCard component
 const ServiceCard = ({ icon, title, details, onClick }) => {
   return (
     <div
@@ -120,3 +137,5 @@ const ServiceCard = ({ icon, title, details, onClick }) => {
     </div>
   );
 };
+
+export default Service;

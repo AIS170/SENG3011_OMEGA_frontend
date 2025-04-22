@@ -3,6 +3,7 @@ import { getUsername } from "../getUserDetails";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Navbar from "../Navbar/Navbar";
+import textToSpeech from "../hooks/textToSpeech";
 
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
 export default function StockHistory() {
@@ -13,6 +14,8 @@ export default function StockHistory() {
   const [stockAnalysis, setStockAnalysis] = useState([]);
 
   const username = getUsername();
+  const speak = textToSpeech();
+
   useEffect(() => {
     async function getStocks() {
       await fetch(`${RETRIEVAL_ENDPOINT}/v1/list/${username}`)
@@ -57,6 +60,11 @@ export default function StockHistory() {
     }
   }, [gotStocks, stockAnalysis, stocks, username]);
 
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
+
   if (!gotStockAnalysis) {
     return (
       <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4 py-10">
@@ -69,7 +77,7 @@ export default function StockHistory() {
         <div role="status">
           <svg
             aria-hidden="true"
-            class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+            className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -177,6 +185,14 @@ export default function StockHistory() {
             );
           })}
         </div>
+
+        <button
+          onClick={handleReadPage}
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+          aria-label="Toggle text to speech"
+        >
+          🗣️
+        </button>
       </>
     );
   }
