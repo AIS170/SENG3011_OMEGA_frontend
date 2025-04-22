@@ -11,7 +11,7 @@ const ANALYSIS_ENDPOINT =
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [error, setError] = useState(false);
-  
+
   let name = "User";
 
   try {
