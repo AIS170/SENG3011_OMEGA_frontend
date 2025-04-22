@@ -38,8 +38,8 @@ const Service = () => {
 
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
-            title="Stock Analysis History"
-            details="Your history of previously analysed stock information. "
+            title="Stock History"
+            details="Your history of previously analysed stock."
             icon={
               <svg
                 width="36"
@@ -50,10 +50,11 @@ const Service = () => {
               >
                 <image
                   className="w-[36px] h-[36px]"
-                  href="src/images/recent-repeat-icon.svg"
+                  href="./recent-repeat-icon.svg"
                 />
               </svg>
             }
+            onClick={() => navigate("/history")}
           />
           <ServiceCard
             title="Analyse a Stock"
@@ -68,7 +69,7 @@ const Service = () => {
               >
                 <image
                   className="w-[36px] h-[36px]"
-                  href="src/images/analysis-icon.svg"
+                  href="./analysis-icon.svg"
                 />
               </svg>
             }
@@ -87,7 +88,7 @@ const Service = () => {
               >
                 <image
                   className="w-[36px] h-[36px]"
-                  href="src/images/suggestion-box-icon.svg"
+                  href="./suggestion-box-icon.svg"
                 />
               </svg>
             }
