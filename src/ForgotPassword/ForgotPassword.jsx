@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
 import useTextToSpeech from "../hooks/textToSpeech";
 
@@ -96,15 +95,23 @@ export default function ForgotPassword() {
                 )}
 
                 <div className="flex items-center justify-between pt-4">
+                  <button
+                    type="submit"
+                    className="w-full rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg transition hover:shadow-xl"
+                  >
+                    Request password reset
+                  </button>
+                </div>
+
+
+                <div className="flex items-center justify-between pt-4">
                   <a href="/signup" className="text-sm underline text-neutral-600 dark:text-neutral-300">
                     Don't have an account?
                   </a>
-                  <button
-                    type="submit"
-                    className="rounded border-2 border-pink-600 px-4 py-1 text-sm font-medium text-pink-600 transition hover:bg-pink-100 dark:hover:bg-neutral-100"
-                  >
-                    Submit
-                  </button>
+                  <a href="/login" className="text-sm underline text-neutral-600 dark:text-neutral-300">
+                    Back to Login
+                  </a>
+
                 </div>
               </form>
             </div>

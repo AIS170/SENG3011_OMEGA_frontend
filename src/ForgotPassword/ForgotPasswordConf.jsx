@@ -12,6 +12,8 @@ export default function ForgotPasswordConf() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
+  const [resendConf, setResendConf] = useState(false);
+
   const speak = useTextToSpeech();
 
   const [password, setPassword] = useState("");
@@ -21,6 +23,34 @@ export default function ForgotPasswordConf() {
     speak(text);
   };
 
+  async function requestResend(e) {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    try {
+      const res = await fetch("https://auth.omega-financials.com/resend_confirmation_code", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          username: username, 
+        })
+      }) 
+
+      const data = await res.json();
+      console.log(res.ok, data)
+      if (res.ok) {
+        setResendConf(true);
+      } else {
+        setError(data?.message || "Unable to resend confirmation code");
+        console.error("Password Reset Conf Code Reset Error:", res.status, data);
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+      console.error(err);
+    }
+  }
 
   async function handleForgotPasswordConf(e) {
     e.preventDefault();
@@ -127,6 +157,18 @@ export default function ForgotPasswordConf() {
                     className="w-full rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg transition hover:shadow-xl"
                   >
                     Reset password
+                  </button>
+                </div>
+                <div className="flex items-center justify-between pt-4">
+                  <p className="text-sm underline text-neutral-600 dark:text-neutral-300" onClick={requestResend}>
+                    Resend verification code
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/login")}
+                    className="rounded border-2 border-pink-600 px-4 py-1 text-sm font-medium text-pink-600 transition hover:bg-pink-100 dark:hover:bg-neutral-100"
+                  >
+                    Login
                   </button>
                 </div>
               </form>
