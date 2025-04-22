@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useTextToSpeech from "./hooks/textToSpeech";
 import "./LandingPage/LandingPage.css";
-import Navbar from "./Navbar/Navbar";
+import LandingPageNavbar from "./Navbar/LandingPageNavbar";
 import ScrollButton from "./ScrollButton/ScrollButton";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <div style={{ overflowY: "scroll", height: "100vh" }}>
         <div className="fixed z-100">
-          <Navbar currPage={"Home"} />
+          <LandingPageNavbar refs={[coverRef, section2Ref]} />
         </div>
 
         <div

@@ -7,8 +7,7 @@ import useTextToSpeech from "../hooks/textToSpeech";
 
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
-const ANALYSIS_ENDPOINT =
-  "http://analytics-load-balancer-2055996024.ap-southeast-2.elb.amazonaws.com";
+const ANALYSIS_ENDPOINT = "https://analytics.omega-financials.com";
 
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
@@ -28,12 +27,12 @@ export default function StockInput() {
     setLoadingResults(true);
     setError(false);
     const company = e.target[0].value.toLowerCase();
-    console.log(company);
+    // console.log(company);
 
-    const date = moment().format("YYYY-MM-DD");
+    const date = moment().utc().format("YYYY-MM-DD");
 
     // Collection
-    console.log(`NAME = ${name}`);
+    // console.log(`NAME = ${name}`);
 
     const collectionRes = await fetch(
       `${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`,
@@ -42,18 +41,21 @@ export default function StockInput() {
     const newsCollection = await fetch(
       `${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`,
     );
-    console.log(`stock data collection Res:`);
+    // console.log(`stock data collection Res:`);
     console.log(collectionRes);
-    console.log(`news collection Res:`);
+    // console.log(`news collection Res:`);
     console.log(newsCollection);
 
     // Retrieval
-    const stockDataRetrieval = await fetch(
+    console.log(
       `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`,
+    );
+    const stockDataRetrieval = await fetch(
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}/`,
     ).then((res) => res.json());
 
     const newsDataRetrieval = await fetch(
-      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`,
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}/?date=${date}`,
     ).then((res) => res.json());
 
     console.log(`stock data retrieval`);
