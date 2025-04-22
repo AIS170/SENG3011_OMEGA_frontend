@@ -139,16 +139,16 @@ export default function ForgotPasswordConf() {
                       className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
                       required
                     />
-                </div>
-                {success && (
-                  <p className="mb-4 text-sm text-green-500 text-center">
-                    {success}
-                  </p>
-                )}          
+                </div>        
 
                 {error && (
                   <p className="mb-4 text-sm text-red-500 text-center">
                     {error}
+                  </p>
+                )}
+                {resendConf && (
+                  <p className="mb-4 text-sm text-green-600 text-center">
+                    A new confirmation code has been sent
                   </p>
                 )}
                 <div className="mb-4 text-center">
@@ -160,7 +160,7 @@ export default function ForgotPasswordConf() {
                   </button>
                 </div>
                 <div className="flex items-center justify-between pt-4">
-                  <p className="text-sm underline text-neutral-600 dark:text-neutral-300" onClick={requestResend}>
+                  <p className="hover:cursor-pointer text-sm underline text-neutral-600 dark:text-neutral-300" onClick={requestResend}>
                     Resend verification code
                   </p>
                   <button
