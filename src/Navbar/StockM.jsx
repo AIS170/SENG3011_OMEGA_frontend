@@ -1,319 +1,99 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Navbar from "./Navbar";
+import { getUsername } from "../getUserDetails";
 
-const StockM = () => {
-  const [chartData, setChartData] = useState(null);
-  const [stockName, setStockName] = useState("");
+export default function StockM() {
+  const [company, setCompany] = useState("");
+  const [stockData, setStockData] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const jsonData = {
-      data_source: "yahoo_finance",
-      dataset_type: "Daily stock data",
-      stock_name: "apple",
-      events: [
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "244.47000122070312",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/18",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "244.8699951171875",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/19",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "245.8300018310547",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/20",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "245.5500030517578",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/21",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "247.10000610351562",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/24",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "247.0399932861328",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/25",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "240.36000061035156",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/26",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "237.3000030517578",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/27",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "241.83999633789062",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/02/28",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "238.02999877929688",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/03",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "235.92999267578125",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/04",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "235.74000549316406",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/05",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "235.3300018310547",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/06",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "239.07000732421875",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/07",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "227.47999572753906",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/10",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "220.83999633789062",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/11",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "216.97999572753906",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/12",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "209.67999267578125",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/13",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "213.49000549316406",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/14",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-        {
-          "event-type": "stock-ohlc",
-          attribute: {
-            stock_name: "apple",
-            close: "214.0",
-          },
-          time_object: {
-            duration: "0",
-            "time-stamp": "2025/03/17",
-            "time-zone": "GMT+11",
-            "duration-unit": "days",
-          },
-        },
-      ],
-    };
+  const username = getUsername();
 
-    const labels = jsonData.events.map(
-      (event) => event.time_object["time-stamp"],
-    );
-    const dataPoints = jsonData.events.map((event) =>
-      parseFloat(event.attribute.close),
-    );
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setError("");
+    setStockData(null);
+    setLoading(true);
 
-    setStockName(jsonData.stock_name); // 👈 Save stock name to state
-    setChartData({
-      labels,
-      datasets: [
-        {
-          label: `${jsonData.stock_name.toUpperCase()} Stock Price`,
-          data: dataPoints,
-          fill: true,
-          backgroundColor: "rgba(75,192,192,0.2)",
-          borderColor: "rgba(75,192,192,1)",
-          pointRadius: 4,
-          tension: 0.3,
-        },
-      ],
-    });
-  }, []);
+    try {
+      const response = await fetch(
+        `https://collection.omega-financials.com/stockInfo?company=${company}&name=${username}`,
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error || "Failed to fetch stock data.");
+      }
+
+      const records = data.data || [];
+      const labels = records.map((e) => e.Date);
+      const prices = records.map((e) => parseFloat(e.Close || 0));
+
+      setStockData({
+        labels,
+        datasets: [
+          {
+            label: `${company.toUpperCase()} Stock Price`,
+            data: prices,
+            fill: true,
+            backgroundColor: "rgba(0, 0, 0, 0.2)",
+            borderColor: "rgba(75,192,192,1)",
+            pointRadius: 4,
+            tension: 0.3,
+          },
+        ],
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="bg-neutral-100 dark:bg-neutral-900 min-h-screen">
+    <>
       <Navbar currPage="Stock Market" />
+      <div className="bg-black min-h-screen text-white px-4 py-10 flex flex-col items-center justify-start">
+        <h1 className="text-4xl font-bold mb-6 text-center">
+          Search a Company to View Stock
+        </h1>
 
-      <div className="flex flex-col items-center justify-center px-4 py-10">
-        <h2 className="text-2xl font-bold mb-6 text-neutral-800 dark:text-white">
-          {chartData ? `${stockName.toUpperCase()} Stock` : "Loading..."}
-        </h2>
-        <div className="w-full max-w-4xl">
-          {chartData ? <Line data={chartData} /> : <p>Loading chart...</p>}
-        </div>
+        <form onSubmit={handleSearch} className="w-full max-w-lg text-center">
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Enter company name (e.g., Apple)"
+            className="w-full mb-4 p-3 rounded border border-gray-300 text-black bg-white focus:border-orange-400 focus:outline-none"
+            required
+          />
+
+          <button
+            type="submit"
+            className="w-full rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg hover:shadow-xl"
+          >
+            {loading ? "Fetching..." : "Fetch Stock Data"}
+          </button>
+        </form>
+
+        {error && (
+          <div className="mt-6 bg-white text-red-600 p-4 rounded shadow max-w-lg w-full text-center">
+            {error}
+          </div>
+        )}
+
+        {stockData && (
+          <div className="w-full max-w-4xl mt-10 bg-white dark:bg-neutral-800 rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">
+              {company.toUpperCase()} Stock Performance
+            </h2>
+            <Line data={stockData} />
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
-};
-
-export default StockM;
+}
