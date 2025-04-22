@@ -33,22 +33,26 @@ export default function StockInput() {
     // Collection
     console.log(`NAME = ${name}`);
 
-    const collectionRes = await fetch(`${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`)
-    .then((res) => res.json())
+    const collectionRes = await fetch(
+      `${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`,
+    ).then((res) => res.json());
 
-    const newsCollection = await fetch(`${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`);
-    console.log(`stock data collection Res:`)
+    const newsCollection = await fetch(
+      `${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`,
+    );
+    console.log(`stock data collection Res:`);
     console.log(collectionRes);
-    console.log(`news collection Res:`)
-    console.log(newsCollection)
-
+    console.log(`news collection Res:`);
+    console.log(newsCollection);
 
     // Retrieval
-    const stockDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`)
-      .then((res) => res.json())
+    const stockDataRetrieval = await fetch(
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`,
+    ).then((res) => res.json());
 
-    const newsDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`)
-      .then((res) => res.json())
+    const newsDataRetrieval = await fetch(
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`,
+    ).then((res) => res.json());
 
     console.log(`stock data retrieval`);
     console.log(stockDataRetrieval);
@@ -69,10 +73,9 @@ export default function StockInput() {
         forecast_days: 30,
         sell_threshold: 0.02,
         buy_threshold: -0.02,
-        user_name: name
+        user_name: name,
       }),
-    })
-    .then((res) => res.json())
+    }).then((res) => res.json());
     setLoadingResults(false);
     console.log(analysis);
     return analysis;
