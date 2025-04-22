@@ -26,11 +26,11 @@ export default function StockHistory() {
     if (!gotStocks) {
       getStocks();
     }
-  }, [gotStocks]);
+  }, [gotStocks, username]);
 
   useEffect(() => {
     async function getAnalysisHistory() {
-      const tempStockAnalysis = []
+      const tempStockAnalysis = [];
       for (const stock of stocks) {
         if (!stock.startsWith("finance_")) {
           continue;
@@ -48,8 +48,6 @@ export default function StockHistory() {
             tempStockAnalysis.push(data.events);
           });
       }
-      console.log(stockAnalysis);
-
 
       setGotStockAnalysis(true);
       setStockAnalysis(tempStockAnalysis);
@@ -58,7 +56,7 @@ export default function StockHistory() {
     if (gotStocks) {
       getAnalysisHistory();
     }
-  }, [gotStocks]);
+  }, [gotStocks, username, stocks]);
 
   if (!gotStockAnalysis) {
     return (
@@ -99,7 +97,7 @@ export default function StockHistory() {
             Previous Stocks
           </div>
           {stockAnalysis.map((stock) => {
-            console.log("abcdefg")
+            console.log("abcdefg");
             const values = [];
             for (const event of stock) {
               values.push({
@@ -129,7 +127,10 @@ export default function StockHistory() {
             };
             return (
               <>
-                <div className="w-[80%] h-[80%] border-3 border-white mb-[6%] px-[6%] pt-[3%] py-[3%]">
+                <div
+                  key={`div`}
+                  className="w-[80%] h-[80%] border-3 border-white mb-[6%] px-[6%] pt-[3%] py-[3%]"
+                >
                   <h1
                     key={`h1`}
                     className="text-3xl font-bold text-center mb-6 text-neutral-800 text-white"
