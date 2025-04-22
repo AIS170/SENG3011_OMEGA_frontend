@@ -11,7 +11,7 @@ const ANALYSIS_ENDPOINT =
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [error, setError] = useState(false);
-  setError(false);
+  
   let name = "User";
 
   try {
@@ -23,6 +23,7 @@ export default function StockInput() {
   async function analyseStockName(e) {
     e.preventDefault();
     setLoadingResults(true);
+    setError(false);
     const company = e.target[0].value.toLowerCase();
     console.log(company);
     // Collection
