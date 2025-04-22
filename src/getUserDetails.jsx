@@ -19,8 +19,7 @@ export function getUsername() {
     const idToken = localStorage.getItem("id_token");
     if (idToken) {
       const decoded = jwtDecode(idToken);
-      return decoded.preferred_username
-
+      return decoded.preferred_username;
     }
   } catch (err) {
     console.error("Failed to decode token:", err);
