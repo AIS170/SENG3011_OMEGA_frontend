@@ -1,18 +1,20 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import useTextToSpeech from "./hooks/textToSpeech";
 import "./LandingPage/LandingPage.css";
 import LandingPageNavbar from "./Navbar/LandingPageNavbar";
 import ScrollButton from "./ScrollButton/ScrollButton";
 
-// Change Log
-// added gap-[20px] to first div element - put some gap between the OMEGA gif and the Get Started Button
-// Changed colour of shadow when the Get Started bttn is hovered over
-
-// Added left and right navigation buttons to navigate to next sections of the home page
 export default function Home() {
   const navigate = useNavigate();
   const coverRef = useRef();
   const section2Ref = useRef();
+  const speak = useTextToSpeech();
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
 
   return (
     <>
@@ -64,6 +66,15 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      {/* Button to trigger text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
+      </button>
     </>
   );
 }

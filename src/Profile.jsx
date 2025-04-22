@@ -1,10 +1,18 @@
 import React, { useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Profile() {
+  const speak = useTextToSpeech();
+
   useEffect(() => {
     // You can fetch user info here if needed
   }, []);
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
 
   return (
     <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900">
@@ -22,6 +30,17 @@ export default function Profile() {
             account settings.
           </p>
         </div>
+      </div>
+
+      {/* Button to trigger text-to-speech */}
+      <div className="absolute top-4 right-4">
+        <button
+          onClick={handleReadPage} // Trigger reading the page
+          className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+          aria-label="Toggle text to speech"
+        >
+          🗣️
+        </button>
       </div>
     </div>
   );

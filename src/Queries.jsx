@@ -1,12 +1,19 @@
 import { useState } from "react";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Queries() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
+  const speak = useTextToSpeech();
 
   const handleAsk = () => {
     // You can replace this with your new logic
     setResponse("Thank you for your query. We'll get back to you shortly.");
+  };
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
   };
 
   return (
@@ -38,6 +45,15 @@ export default function Queries() {
           </p>
         </div>
       )}
+
+      {/* Button to toggle text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
+      </button>
     </div>
   );
 }

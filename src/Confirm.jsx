@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ConfirmCodeInput from "./Input";
 import { useNavigate, useLocation } from "react-router-dom";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function ConfirmSignup() {
   const location = useLocation();
@@ -9,6 +10,13 @@ export default function ConfirmSignup() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+
+  const speak = useTextToSpeech();
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
 
   const handleConfirmSignup = async (e) => {
     e.preventDefault();
@@ -48,6 +56,16 @@ export default function ConfirmSignup() {
           <div className="flex flex-col lg:flex-row">
             {/* Left Side – Form */}
             <div className="w-full lg:w-1/2 p-8 md:p-12">
+              <div className="absolute top-4 right-4">
+                <button
+                  onClick={handleReadPage}
+                  className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+                  aria-label="Toggle text to speech"
+                >
+                  🗣️
+                </button>
+              </div>
+
               <div className="text-center mb-6">
                 <img
                   className="mx-auto w-32"

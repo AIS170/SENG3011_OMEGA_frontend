@@ -3,14 +3,16 @@ import "./StockInput.css";
 import Navbar from "../Navbar/Navbar";
 import { useState } from "react";
 import moment from "moment";
+import useTextToSpeech from "../hooks/textToSpeech";
 
-// Button taken from https://v1.tailwindcss.com/components/buttons
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
 const ANALYSIS_ENDPOINT = "https://analytics.omega-financials.com";
+
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [error, setError] = useState(false);
+  const speak = useTextToSpeech();
 
   let name = "User";
 
@@ -83,10 +85,15 @@ export default function StockInput() {
     return analysis;
   }
 
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
+
   return (
     <>
       <Navbar currPage={"Analyse"} />
-      <div className=" min-h-screen bg-black">
+      <div className="min-h-screen bg-black">
         <div className="flex items-center justify-center flex-wrap">
           <div className="text-center w-[100%] font-semibold text-[50px] mt-[4%] text-white">
             Analyse a Company Stock
@@ -113,7 +120,6 @@ export default function StockInput() {
                 Analyse
               </button>
 
-              {/* Tailwind for spinner taken from https://flowbite.com/docs/components/spinner/ */}
               {loadingResults && (
                 <>
                   <div className="text-white mt-[25px]">
@@ -155,6 +161,15 @@ export default function StockInput() {
           </div>
         )}
       </div>
+
+      {/* Button to trigger text-to-speech */}
+      <button
+        onClick={handleReadPage}
+        className="fixed bottom-6 right-6 z-50 rounded-full bg-blue-600 p-4 text-white shadow-lg hover:bg-blue-700 focus:outline-none"
+        aria-label="Toggle text to speech"
+      >
+        🗣️
+      </button>
     </>
   );
 }
