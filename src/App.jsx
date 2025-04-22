@@ -49,22 +49,22 @@ const App = () => {
           }
         />
 
-        <Route 
-          path="/history" 
+        <Route
+          path="/history"
           element={
             <ProtectedRoute>
               <StockHistory />
             </ProtectedRoute>
-          } 
+          }
         />
-        
-        <Route 
-          path="/news-feed" 
+
+        <Route
+          path="/news-feed"
           element={
             <ProtectedRoute>
               <StockForecasts />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route
           path="/stocks"
