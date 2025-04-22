@@ -12,6 +12,7 @@ import Queries from "./Queries";
 import StockForecasts from "./StockNews/StockNews";
 import StockM from "./Navbar/StockM";
 import Profile from "./Profile";
+import StockInput from "./Analysis/StockInput";
 
 const App = () => {
   return (
@@ -34,7 +35,7 @@ const App = () => {
           path="/analysis"
           element={
             <ProtectedRoute>
-              <Analysis />
+              <StockInput />
             </ProtectedRoute>
           }
         />
