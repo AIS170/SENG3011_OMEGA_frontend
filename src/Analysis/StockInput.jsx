@@ -2,6 +2,7 @@ import { getUsername } from "../getUserDetails";
 import "./StockInput.css";
 import Navbar from "../Navbar/Navbar";
 import { useState } from "react";
+import moment from "moment";
 
 // Button taken from https://v1.tailwindcss.com/components/buttons
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
@@ -26,36 +27,47 @@ export default function StockInput() {
     setError(false);
     const company = e.target[0].value.toLowerCase();
     console.log(company);
+
+    const date = moment().format("YYYY-MM-DD");
+
     // Collection
     console.log(`NAME = ${name}`);
-    // const collectionRes = await axios(`${COLLECTION_ENDPOINT}/stockInfo?name=${name}&company=${company}`)
 
-    // .then((res) => res.json())
-    // await fetch(`${COLLECTION_ENDPOINT}/news`)
-    // console.log(collectionRes)
-    // const collectionRes = await axios.get(`${COLLECTION_ENDPOINT}/stockInfo?company=${company}`, {
-    //   data: {
-    //     username: name
-    //   }
-    // })
-    // console.log(collectionRes);
-    // // Retrieval
-    // // const stockDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`)
-    // //   .then((res) => res.json())
-    // // console.log(stockDataRetrieval)
+    const collectionRes = await fetch(`${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`)
+    .then((res) => res.json())
 
-    // // const analysis = await fetch(`${ANALYSIS_ENDPOINT}/analyze`, {
-    // //   method: "POST",
-    // //   headers: {
-    // //     "Content-Type": "application/json",
-    // //   },
-    // //   body: JSON.stringify({
-    // //     stock_data: stockDataRetrieval
-    // //   }),
-    // // })
-    // // .then((res) => res.json())
+    const newsCollection = await fetch(`${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`);
 
-    // // console.log(analysis)
+    console.log(collectionRes);
+    console.log(newsCollection)
+
+
+    // Retrieval
+    const stockDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`)
+      .then((res) => res.json())
+
+    const newsDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`)
+      .then((res) => res.json())
+
+    // Analysis
+    const analysis = await fetch(`${ANALYSIS_ENDPOINT}/analyze`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        stock_data: stockDataRetrieval,
+        sentiment_analysis: newsDataRetrieval,
+        years: 5,
+        forecast_days: 30,
+        sell_threshold: 0.02,
+        buy_threshold: -0.02,
+        user_name: name
+      }),
+    })
+    .then((res) => res.json())
+    setLoadingResults(false);
+    return analysis;
   }
 
   return (
@@ -98,7 +110,7 @@ export default function StockInput() {
                   <div role="status" className="mt-[10px] flex justify-center">
                     <svg
                       aria-hidden="true"
-                      class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-orange-400"
+                      className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-orange-400"
                       viewBox="0 0 100 101"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +124,7 @@ export default function StockInput() {
                         fill="currentFill"
                       />
                     </svg>
-                    <span class="sr-only">Loading...</span>
+                    <span className="sr-only">Loading...</span>
                   </div>
                 </>
               )}
