@@ -40,9 +40,9 @@ export default function StockInput() {
       `${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`,
     );
     // console.log(`stock data collection Res:`);
-    // console.log(collectionRes);
+    console.log(collectionRes);
     // console.log(`news collection Res:`);
-    // console.log(newsCollection);
+    console.log(newsCollection);
 
     // Retrieval
     console.log(
