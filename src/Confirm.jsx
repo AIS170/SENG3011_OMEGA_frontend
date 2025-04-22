@@ -17,7 +17,7 @@ export default function ConfirmSignup() {
 
     try {
       const res = await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/confirm_signup",
+        "https://auth.omega-financials.com/confirm_signup",
         {
           method: "POST",
           headers: {

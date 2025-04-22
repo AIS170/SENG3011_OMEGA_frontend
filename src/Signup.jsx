@@ -17,7 +17,7 @@ export default function Signup() {
 
     try {
       const res = await fetch(
-        "http://authloadbalancer-648996409.ap-southeast-2.elb.amazonaws.com/signup",
+        "https://auth.omega-financials.com/signup",
         {
           method: "POST",
           headers: {
