@@ -10,28 +10,28 @@ export default function StockM() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const username = getUsername(); 
+  const username = getUsername();
 
   const handleSearch = async (e) => {
     e.preventDefault();
     setError("");
     setStockData(null);
     setLoading(true);
-  
+
     try {
       const response = await fetch(
-        `https://collection.omega-financials.com/stockInfo?company=${company}&name=${username}`
+        `https://collection.omega-financials.com/stockInfo?company=${company}&name=${username}`,
       );
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data?.error || "Failed to fetch stock data.");
       }
-  
+
       const records = data.data || [];
       const labels = records.map((e) => e.Date);
       const prices = records.map((e) => parseFloat(e.Close || 0));
-  
+
       setStockData({
         labels,
         datasets: [
@@ -52,7 +52,6 @@ export default function StockM() {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
@@ -63,14 +62,14 @@ export default function StockM() {
         </h1>
 
         <form onSubmit={handleSearch} className="w-full max-w-lg text-center">
-        <input
-          type="text"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Enter company name (e.g., Apple)"
-          className="w-full mb-4 p-3 rounded border border-gray-300 text-black bg-white focus:border-orange-400 focus:outline-none"
-          required
-        />
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Enter company name (e.g., Apple)"
+            className="w-full mb-4 p-3 rounded border border-gray-300 text-black bg-white focus:border-orange-400 focus:outline-none"
+            required
+          />
 
           <button
             type="submit"
