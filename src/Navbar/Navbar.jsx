@@ -74,7 +74,7 @@ export default function Navbar({ currPage }) {
             <div className="flex shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="./omega.svg"
+                src="./omega.png"
                 alt="Omega Financials"
               />
             </div>
