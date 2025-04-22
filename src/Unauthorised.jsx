@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Unauthorized() {
   const navigate = useNavigate();
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleReadPage = () => {
     const text = document.body.innerText;

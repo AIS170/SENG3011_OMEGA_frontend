@@ -1,6 +1,6 @@
 import { useRef, useCallback } from "react";
 
-export default function textToSpeech() {
+export default function useTextToSpeech() {
   const utteranceRef = useRef(null);
   const isSpeakingRef = useRef(false);
 

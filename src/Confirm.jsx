@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ConfirmCodeInput from "./Input";
 import { useNavigate, useLocation } from "react-router-dom";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function ConfirmSignup() {
   const location = useLocation();
@@ -11,12 +11,12 @@ export default function ConfirmSignup() {
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
 
-  const speak = textToSpeech();
-  
-    const handleReadPage = () => {
-      const text = document.body.innerText;
-      speak(text);
-    };
+  const speak = useTextToSpeech();
+
+  const handleReadPage = () => {
+    const text = document.body.innerText;
+    speak(text);
+  };
 
   const handleConfirmSignup = async (e) => {
     e.preventDefault();

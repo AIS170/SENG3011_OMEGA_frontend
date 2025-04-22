@@ -1,10 +1,10 @@
 import { useState } from "react";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Queries() {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleAsk = () => {
     // You can replace this with your new logic

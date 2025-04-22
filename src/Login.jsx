@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -9,7 +9,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleLogin = async (e) => {
     e.preventDefault();

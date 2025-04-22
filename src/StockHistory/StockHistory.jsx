@@ -3,7 +3,7 @@ import { getUsername } from "../getUserDetails";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Navbar from "../Navbar/Navbar";
-import textToSpeech from "../hooks/textToSpeech";
+import useTextToSpeech from "../hooks/textToSpeech";
 
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
 export default function StockHistory() {
@@ -14,7 +14,7 @@ export default function StockHistory() {
   const [stockAnalysis, setStockAnalysis] = useState([]);
 
   const username = getUsername();
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   useEffect(() => {
     async function getStocks() {

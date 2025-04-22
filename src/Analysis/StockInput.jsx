@@ -3,7 +3,7 @@ import "./StockInput.css";
 import Navbar from "../Navbar/Navbar";
 import { useState } from "react";
 import moment from "moment";
-import textToSpeech from "../hooks/textToSpeech";
+import useTextToSpeech from "../hooks/textToSpeech";
 
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
 const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
@@ -13,7 +13,7 @@ const ANALYSIS_ENDPOINT =
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
   const [error, setError] = useState(false);
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   let name = "User";
 
@@ -120,7 +120,10 @@ export default function StockInput() {
 
               {loadingResults && (
                 <>
-                  <div className="text-white mt-[25px]"> One moment please: </div>
+                  <div className="text-white mt-[25px]">
+                    {" "}
+                    One moment please:{" "}
+                  </div>
                   <div role="status" className="mt-[10px] flex justify-center">
                     <svg
                       aria-hidden="true"

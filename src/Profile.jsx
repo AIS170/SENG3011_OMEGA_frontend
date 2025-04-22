@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar/Navbar";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 
 export default function Profile() {
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   useEffect(() => {
     // You can fetch user info here if needed

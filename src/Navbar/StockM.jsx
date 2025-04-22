@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import Navbar from "./Navbar";
 import { getUsername } from "../getUserDetails";
-import textToSpeech from "../hooks/textToSpeech";
+import useTextToSpeech from "../hooks/textToSpeech";
 
 export default function StockM() {
   const [company, setCompany] = useState("");
@@ -12,7 +12,7 @@ export default function StockM() {
   const [loading, setLoading] = useState(false);
 
   const username = getUsername();
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleSearch = async (e) => {
     e.preventDefault();

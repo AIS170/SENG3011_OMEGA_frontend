@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { jwtDecode } from "jwt-decode";
-import textToSpeech from "../hooks/textToSpeech";
+import useTextToSpeech from "../hooks/textToSpeech";
 import "./Service.css";
 
 // Service component
@@ -19,7 +19,7 @@ const Service = () => {
     console.error("Failed to decode token:", err);
   }
 
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleReadPage = () => {
     const text = document.body.innerText;

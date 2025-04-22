@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import textToSpeech from "./hooks/textToSpeech";
+import useTextToSpeech from "./hooks/textToSpeech";
 import "./LandingPage/LandingPage.css";
 import Navbar from "./Navbar/Navbar";
 import ScrollButton from "./ScrollButton/ScrollButton";
@@ -9,7 +9,7 @@ export default function Home() {
   const navigate = useNavigate();
   const coverRef = useRef();
   const section2Ref = useRef();
-  const speak = textToSpeech();
+  const speak = useTextToSpeech();
 
   const handleReadPage = () => {
     const text = document.body.innerText;
