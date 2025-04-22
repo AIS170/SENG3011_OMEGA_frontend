@@ -37,8 +37,9 @@ export default function StockInput() {
     .then((res) => res.json())
 
     const newsCollection = await fetch(`${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`);
-
+    console.log(`stock data collection Res:`)
     console.log(collectionRes);
+    console.log(`news collection Res:`)
     console.log(newsCollection)
 
 
@@ -48,6 +49,12 @@ export default function StockInput() {
 
     const newsDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`)
       .then((res) => res.json())
+
+    console.log(`stock data retrieval`);
+    console.log(stockDataRetrieval);
+
+    console.log(`nes data retrieval`);
+    console.log(newsDataRetrieval);
 
     // Analysis
     const analysis = await fetch(`${ANALYSIS_ENDPOINT}/analyze`, {
@@ -67,6 +74,7 @@ export default function StockInput() {
     })
     .then((res) => res.json())
     setLoadingResults(false);
+    console.log(analysis);
     return analysis;
   }
 
