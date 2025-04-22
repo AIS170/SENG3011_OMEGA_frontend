@@ -122,7 +122,7 @@ export default function Login() {
                     Log in
                   </button>
                   <a
-                    href="#!"
+                    href="/forgot-password"
                     className="mt-3 inline-block text-sm text-blue-500"
                   >
                     Forgot password?
