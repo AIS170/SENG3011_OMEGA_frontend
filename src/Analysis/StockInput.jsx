@@ -46,11 +46,11 @@ export default function StockInput() {
 
     // Retrieval
     const stockDataRetrieval = await fetch(
-      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}`,
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}/`,
     ).then((res) => res.json());
 
     const newsDataRetrieval = await fetch(
-      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}?date=${date}`,
+      `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}/?date=${date}`,
     ).then((res) => res.json());
 
     console.log(`stock data retrieval`);
