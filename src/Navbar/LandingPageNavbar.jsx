@@ -6,18 +6,10 @@ export default function Navbar({ refs }) {
   const navigate = useNavigate();
   const [clickedMenuButton, setClickedMenuButton] = useState(false);
 
-
-
   const pages = ["OMEGA", "Invest With Confidence"];
-  const pageRoutes = {
-    Dashboard: "/dashboard",
-    "Stock Market": "/stocks",
-    Projects: "/projects",
-    Calendar: "/calendar",
-  };
 
   function scrollByY(ref) {
-    ref.current.scrollIntoView({behaviour: "instant", block: "start"})
+    ref.current.scrollIntoView({ behaviour: "instant", block: "start" });
   }
 
   return (
@@ -62,7 +54,8 @@ export default function Navbar({ refs }) {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {pages.map((pageName, i) => {
-                  const cl = "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
+                  const cl =
+                    "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
                   return (
                     <button
                       key={pageName}
@@ -96,10 +89,8 @@ export default function Navbar({ refs }) {
                 onClick={() => navigate("/login")}
               >
                 Login
-
               </button>
             </div>
-
           </div>
         </div>
       </div>
@@ -109,7 +100,8 @@ export default function Navbar({ refs }) {
         {clickedMenuButton && (
           <div className="space-y-1 px-2 pt-2 pb-3">
             {pages.map((pageName, i) => {
-              const cl = "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
+              const cl =
+                "block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white transition duration-200 ease-out";
               return (
                 <button
                   key={pageName}
