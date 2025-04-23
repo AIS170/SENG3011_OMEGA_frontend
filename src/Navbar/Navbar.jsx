@@ -31,11 +31,11 @@ export default function Navbar({ currPage }) {
     navigate("/login");
   };
 
-  const pages = ["Dashboard", "Stock Market", "History", "Analyse", "Get Started"];
+  const pages = ["Stock Search", "Analyse", "Stock History", "Get Started"];
   const pageRoutes = {
     Dashboard: "/dashboard",
-    "Stock Market": "/stocks",
-    "History": "/history",
+    "Stock Search": "/stocks",
+    "Stock History": "/history",
     "Analyse": "/analysis",
     "Get Started": "/ai-help"
   };
