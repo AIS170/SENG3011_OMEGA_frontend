@@ -211,7 +211,7 @@ export default function StockInput() {
         {chartData && (
           <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6 my-10">
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-              {chosenCompany.toUpperCase()}’s Forecast & Confidence Interval
+              {chosenCompany.toUpperCase()}’s Forecast
             </h2>
             <Line data={chartData} />
           </div>
