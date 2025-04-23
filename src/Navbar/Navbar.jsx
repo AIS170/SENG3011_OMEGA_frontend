@@ -36,8 +36,8 @@ export default function Navbar({ currPage }) {
     Dashboard: "/dashboard",
     "Stock Search": "/stocks",
     "Stock History": "/history",
-    "Analyse": "/analysis",
-    "Get Started": "/ai-help"
+    Analyse: "/analysis",
+    "Get Started": "/ai-help",
   };
 
   return (

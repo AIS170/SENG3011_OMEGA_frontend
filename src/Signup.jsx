@@ -161,8 +161,8 @@ export default function Signup() {
                 <div>
                   <h4 className="mb-4 text-xl font-semibold">About Us</h4>
                   <p className="text-sm">
-                  We are a team of 5 highly driven engineers who are ready to take
-                  the investing world by storm.
+                    We are a team of 5 highly driven engineers who are ready to
+                    take the investing world by storm.
                   </p>
                 </div>
               </div>

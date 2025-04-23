@@ -106,7 +106,6 @@ const Service = () => {
             onClick={() => navigate("/history")}
           />
 
-
           <ServiceCard
             title="Get Started"
             details="For new members. Learn how to use OMEGA to brighten your investing future."
