@@ -9,17 +9,17 @@ import useTextToSpeech from "../hooks/textToSpeech";
 import "./StockInput.css";
 
 const COLLECTION_ENDPOINT = "https://collection.omega-financials.com";
-const RETRIEVAL_ENDPOINT  = "https://retrieval.omega-financials.com";
-const ANALYSIS_ENDPOINT   = "https://analytics.omega-financials.com";
+const RETRIEVAL_ENDPOINT = "https://retrieval.omega-financials.com";
+const ANALYSIS_ENDPOINT = "https://analytics.omega-financials.com";
 
 export default function StockInput() {
   const [loadingResults, setLoadingResults] = useState(false);
-  const [error, setError]             = useState(false);
-  const [chartData, setChartData]     = useState(null);
+  const [error, setError] = useState(false);
+  const [chartData, setChartData] = useState(null);
 
-  const [forecastDays, setForecastDays]   = useState(30);
+  const [forecastDays, setForecastDays] = useState(30);
   const [sellThreshold, setSellThreshold] = useState(0.02);
-  const [buyThreshold, setBuyThreshold]   = useState(-0.02);
+  const [buyThreshold, setBuyThreshold] = useState(-0.02);
   const [chosenCompany, setChosenCompany] = useState(null);
 
   const [signalsSummary, setSignalsSummary] = useState("");
@@ -27,7 +27,9 @@ export default function StockInput() {
 
   const speak = useTextToSpeech();
   let name = "User";
-  try { name = getUsername(); } catch {}
+  try {
+    name = getUsername();
+  } catch {}
 
   async function analyseStockName(e) {
     e.preventDefault();
@@ -38,32 +40,40 @@ export default function StockInput() {
 
     const company = e.target.company.value.toLowerCase();
     setChosenCompany(company);
-    const date    = moment().utc().format("YYYY-MM-DD");
+    const date = moment().utc().format("YYYY-MM-DD");
 
     try {
-      await fetch(`${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`).then((r) => r.json());
-      await fetch(`${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`).then((r) => r.json());
+      await fetch(
+        `${COLLECTION_ENDPOINT}/stockInfo?name=${name.toLowerCase()}&company=${company}`,
+      ).then((r) => r.json());
+      await fetch(
+        `${COLLECTION_ENDPOINT}/news?name=${name.toLowerCase()}`,
+      ).then((r) => r.json());
 
-      const stockDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}/`).then((r) => r.json());
-      const newsDataRetrieval = await fetch(`${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}/?date=${date}`).then((r) => r.json());
+      const stockDataRetrieval = await fetch(
+        `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/finance/${company}/`,
+      ).then((r) => r.json());
+      const newsDataRetrieval = await fetch(
+        `${RETRIEVAL_ENDPOINT}/v2/retrieve/${name.toLowerCase()}/news/${company}/?date=${date}`,
+      ).then((r) => r.json());
 
       const analysis = await fetch(`${ANALYSIS_ENDPOINT}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          stock_data:         stockDataRetrieval,
+          stock_data: stockDataRetrieval,
           sentiment_analysis: newsDataRetrieval,
-          years:              5,
-          forecast_days:      Number(forecastDays),
-          sell_threshold:     Number(sellThreshold),
-          buy_threshold:      Number(buyThreshold),
-          user_name:          name,
+          years: 5,
+          forecast_days: Number(forecastDays),
+          sell_threshold: Number(sellThreshold),
+          buy_threshold: Number(buyThreshold),
+          user_name: name,
         }),
       }).then((r) => r.json());
 
-      const records   = Array.isArray(analysis) ? analysis : analysis.data || [];
-      const labels    = records.map(r => moment(r.ds).format("MMM D"));
-      const combined  = records.map(r => r.yhat);
+      const records = Array.isArray(analysis) ? analysis : analysis.data || [];
+      const labels = records.map((r) => moment(r.ds).format("MMM D"));
+      const combined = records.map((r) => r.yhat);
 
       setChartData({
         labels,
@@ -82,24 +92,33 @@ export default function StockInput() {
       setLoadingSummary(true);
       const prompt = `Here is the analysis output for ${company.toUpperCase()}:\n${JSON.stringify(records, null, 2)}\nPlease summarize the dates where Buy_Signal or Sell_Signal is true, and explain why each signal was triggered in one.`;
       try {
-        const aiRes = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_OPEN_AI_KEY}`,
+        const aiRes = await fetch(
+          "https://api.openai.com/v1/chat/completions",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${import.meta.env.VITE_OPEN_AI_KEY}`,
+            },
+            body: JSON.stringify({
+              model: "gpt-4.1-nano",
+              messages: [
+                {
+                  role: "system",
+                  content:
+                    "List the dates when buy and sell signals are true. Give one line explanation on why signals are true on these dates. Call yhat stock price. Do not bold the text. Remove underscores. Instead of saying buy signal and sell signal, say you should buy on this date or sell on this date.",
+                },
+                { role: "user", content: prompt },
+              ],
+              temperature: 0.3,
+              max_tokens: 200,
+            }),
           },
-          body: JSON.stringify({
-            model: "gpt-4.1-nano",
-            messages: [
-              { role: "system", content: "List the dates when buy and sell signals are true. Give one line explanation on why signals are true on these dates. Call yhat stock price. Do not bold the text. Remove underscores. Instead of saying buy signal and sell signal, say you should buy on this date or sell on this date." },
-              { role: "user", content: prompt }
-            ],
-            temperature: 0.3,
-            max_tokens: 200,
-          }),
-        });
+        );
         const aiData = await aiRes.json();
-        setSignalsSummary(aiData.choices?.[0]?.message?.content.trim() || "No signals found.");
+        setSignalsSummary(
+          aiData.choices?.[0]?.message?.content.trim() || "No signals found.",
+        );
       } catch (aiErr) {
         console.error("OpenAI error:", aiErr);
         setSignalsSummary("Failed to generate signals summary.");
@@ -151,17 +170,19 @@ export default function StockInput() {
                     type="number"
                     min="1"
                     value={forecastDays}
-                    onChange={e => setForecastDays(e.target.value)}
+                    onChange={(e) => setForecastDays(e.target.value)}
                     className="w-full p-2 rounded border border-gray-400 text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-white mb-1">Sell Threshold</label>
+                  <label className="block text-white mb-1">
+                    Sell Threshold
+                  </label>
                   <input
                     type="number"
                     step="0.001"
                     value={sellThreshold}
-                    onChange={e => setSellThreshold(e.target.value)}
+                    onChange={(e) => setSellThreshold(e.target.value)}
                     className="w-full p-2 rounded border border-gray-400 text-white"
                   />
                 </div>
@@ -171,7 +192,7 @@ export default function StockInput() {
                     type="number"
                     step="0.001"
                     value={buyThreshold}
-                    onChange={e => setBuyThreshold(e.target.value)}
+                    onChange={(e) => setBuyThreshold(e.target.value)}
                     className="w-full p-2 rounded border border-gray-400 text-white"
                   />
                 </div>
@@ -214,37 +235,40 @@ export default function StockInput() {
             <h2 className="text-2xl font-semibold mb-4 text-gray-800">
               {chosenCompany.toUpperCase()}’s Forecast
             </h2>
-            <Line data={chartData} options={{
-              responsive: true,
-              plugins: {
-                tooltip: {
-                  mode: "index",
-                  intersect: false,
-                  callbacks: {
-                    label: function (context) {
-                      return `$${context.parsed.y}`;
+            <Line
+              data={chartData}
+              options={{
+                responsive: true,
+                plugins: {
+                  tooltip: {
+                    mode: "index",
+                    intersect: false,
+                    callbacks: {
+                      label: function (context) {
+                        return `$${context.parsed.y}`;
+                      },
+                    },
+                  },
+                  legend: {
+                    position: "top",
+                  },
+                },
+                scales: {
+                  x: {
+                    title: {
+                      display: true,
+                      text: "Date",
+                    },
+                  },
+                  y: {
+                    title: {
+                      display: true,
+                      text: "Price ($)",
                     },
                   },
                 },
-                legend: {
-                  position: "top",
-                },
-              },
-              scales: {
-                x: {
-                  title: {
-                    display: true,
-                    text: "Date",
-                  },
-                },
-                y: {
-                  title: {
-                    display: true,
-                    text: "Price ($)",
-                  },
-                },
-              },
-            }} />
+              }}
+            />
           </div>
         )}
         {error && (
@@ -257,10 +281,13 @@ export default function StockInput() {
             <h2 className="text-2xl font-semibold mb-2 text-gray-800">
               Trading Signals Summary
             </h2>
-            {loadingSummary
-              ? <p className="italic">Generating summary…</p>
-              : <pre className="whitespace-pre-wrap text-gray-800">{signalsSummary}</pre>
-            }
+            {loadingSummary ? (
+              <p className="italic">Generating summary…</p>
+            ) : (
+              <pre className="whitespace-pre-wrap text-gray-800">
+                {signalsSummary}
+              </pre>
+            )}
           </div>
         )}
         <button

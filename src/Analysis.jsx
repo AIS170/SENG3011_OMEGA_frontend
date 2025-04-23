@@ -20,8 +20,8 @@ export default function Analysis() {
     const baseDataset = chartDataInput.datasets[0];
     const labels = [...chartDataInput.labels];
 
-    const forecastLabels = forecastData.map((d) =>
-      new Date(d.ds).toISOString().split("T")[0]
+    const forecastLabels = forecastData.map(
+      (d) => new Date(d.ds).toISOString().split("T")[0],
     );
     const forecastPrices = forecastData.map((d) => d.yhat);
 
