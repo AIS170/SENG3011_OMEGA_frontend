@@ -29,8 +29,8 @@ export default function StockInput() {
   let name = "User";
   try {
     name = getUsername();
-  } catch (e){
-    console.log(e)
+  } catch (e) {
+    console.log(e);
   }
 
   async function analyseStockName(e) {
