@@ -43,6 +43,14 @@ const App = () => {
           }
         />
         <Route
+          path="/analysis/result"
+          element={
+            <ProtectedRoute>
+              <Analysis />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/ai-help"
           element={
             <ProtectedRoute>
