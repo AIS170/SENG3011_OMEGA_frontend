@@ -119,10 +119,8 @@ export default function ConfirmSignup() {
               <div>
                 <h4 className="mb-4 text-xl font-semibold">About Us</h4>
                 <p className="text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Temporibus, expedita iusto veniam atque, magni tempora
-                  mollitia dolorum consequatur nulla, neque debitis eos
-                  reprehenderit quasi ab ipsum nisi dolorem modi. Quos?
+                  We are a team of 5 highly driven engineers who are ready to take
+                  the investing world by storm.
                 </p>
               </div>
             </div>
