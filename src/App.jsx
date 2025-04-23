@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router";
 import Home from "./Home";
 import Unauthorized from "./Unauthorised";
 import ProtectedRoute from "./Protected";
-import Analysis from "./Analysis";
 import Queries from "./Queries";
 import StockForecasts from "./StockNews/StockNews";
 import StockM from "./Navbar/StockM";
@@ -42,14 +41,7 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/analysis/result"
-          element={
-            <ProtectedRoute>
-              <Analysis />
-            </ProtectedRoute>
-          }
-        />
+
         <Route
           path="/ai-help"
           element={
