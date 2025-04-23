@@ -14,6 +14,8 @@ import StockM from "./Navbar/StockM";
 import Profile from "./Profile";
 import StockInput from "./Analysis/StockInput";
 import StockHistory from "./StockHistory/StockHistory";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import ForgotPasswordConf from "./ForgotPassword/ForgotPasswordConf";
 
 const App = () => {
   return (
@@ -82,6 +84,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/conf-forgot-password" element={<ForgotPasswordConf />} />
       </Routes>
     </Router>
   );

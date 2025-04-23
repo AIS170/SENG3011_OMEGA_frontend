@@ -109,13 +109,13 @@ export default function StockInput() {
             >
               <input
                 placeholder="Company name"
-                className="bg-white rounded-sm p-[8px] border-2 border-gray-400 unselectable focus:border-orange-400"
+                className="bg-white rounded-sm p-[8px] border-2 border-gray-400 unselectable focus:border-orange-400 w-full mb-[6%]"
                 type="text"
               />
               <br />
               <button
                 type="submit"
-                className="mt-[16px] hover:cursor-pointer rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg transition hover:shadow-xl submitButton"
+                className="w-full rounded bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 px-6 py-2 text-white shadow-lg hover:shadow-xl"
               >
                 Analyse
               </button>
