@@ -27,7 +27,7 @@ const Service = () => {
   };
 
   return (
-    <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <section className="pb-12 pt-[60%] dark:bg-dark bg-[rgb(34,34,34)] lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
@@ -47,6 +47,46 @@ const Service = () => {
 
         <div className="-mx-4 flex flex-wrap">
           <ServiceCard
+            title="Stock Search"
+            details="Search the current performance of a stock."
+            icon={
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="./stock-market-icon.svg"
+                />
+              </svg>
+            }
+            onClick={() => navigate("/stocks")}
+          />
+
+          <ServiceCard
+            title="Analyse"
+            details="Analyse the future performance of a stock."
+            icon={
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <image
+                  className="w-[36px] h-[36px]"
+                  href="./analysis-icon.svg"
+                />
+              </svg>
+            }
+            onClick={() => navigate("/analysis")}
+          />
+
+          <ServiceCard
             title="Stock History"
             details="Your history of previously analysed stock."
             icon={
@@ -65,25 +105,7 @@ const Service = () => {
             }
             onClick={() => navigate("/history")}
           />
-          <ServiceCard
-            title="Analyse a Stock"
-            details="Get help in deciding whether a stock is right for you based on what its recent performance in the stock market and current news surrounding the stock."
-            icon={
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <image
-                  className="w-[36px] h-[36px]"
-                  href="./analysis-icon.svg"
-                />
-              </svg>
-            }
-            onClick={() => navigate("/analysis")}
-          />
+
           <ServiceCard
             title="Get Started"
             details="For new members. Learn how to use OMEGA to brighten your investing future."
