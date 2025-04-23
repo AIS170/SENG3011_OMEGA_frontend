@@ -27,7 +27,7 @@ const Service = () => {
   };
 
   return (
-    <section className="pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <section className="pb-12 pt-[60%] dark:bg-dark bg-[rgb(34,34,34)] lg:pb-[90px] lg:pt-[120px]">
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
