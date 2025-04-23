@@ -18,7 +18,7 @@ export default function StockHistory() {
 
   useEffect(() => {
     async function getStocks() {
-      await fetch(`${RETRIEVAL_ENDPOINT}/v1/list/${username}`)
+      await fetch(`${RETRIEVAL_ENDPOINT}/v1/list/${username}/`)
         .then((res) => res.json())
         .then((data) => {
           setStocks(data.Success);
@@ -29,10 +29,11 @@ export default function StockHistory() {
     if (!gotStocks) {
       getStocks();
     }
-  }, [gotStocks, username]);
+  }, [gotStocks]);
 
   useEffect(() => {
     async function getAnalysisHistory() {
+      const tempStockAnalysis = []
       for (const stock of stocks) {
         if (!stock.startsWith("finance_")) {
           continue;
@@ -42,23 +43,25 @@ export default function StockHistory() {
         const stockName = stock.substring(prefixLength);
         console.log(stockName);
         await fetch(
-          `${RETRIEVAL_ENDPOINT}/v2/retrieve/${username}/finance/${stockName}`,
+          `${RETRIEVAL_ENDPOINT}/v2/retrieve/${username}/finance/${stockName}/`,
         )
           .then((res) => res.json())
           .then((data) => {
             console.log(data.events);
-            stockAnalysis.push(data.events);
+            tempStockAnalysis.push(data.events);
           });
       }
       console.log(stockAnalysis);
+
+
       setGotStockAnalysis(true);
+      setStockAnalysis(tempStockAnalysis);
     }
 
     if (gotStocks) {
-      setStockAnalysis([]);
       getAnalysisHistory();
     }
-  }, [gotStocks, stockAnalysis, stocks, username]);
+  }, [gotStocks]);
 
   const handleReadPage = () => {
     const text = document.body.innerText;
@@ -91,7 +94,7 @@ export default function StockHistory() {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       </div>
     );
@@ -104,6 +107,7 @@ export default function StockHistory() {
             Previous Stocks
           </div>
           {stockAnalysis.map((stock) => {
+            console.log("abcdefg")
             const values = [];
             for (const event of stock) {
               values.push({
