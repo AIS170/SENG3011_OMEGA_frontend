@@ -29,11 +29,11 @@ export default function StockHistory() {
     if (!gotStocks) {
       getStocks();
     }
-  }, [gotStocks]);
+  }, [gotStocks, username]);
 
   useEffect(() => {
     async function getAnalysisHistory() {
-      const tempStockAnalysis = []
+      const tempStockAnalysis = [];
       for (const stock of stocks) {
         if (!stock.startsWith("finance_")) {
           continue;
@@ -51,8 +51,7 @@ export default function StockHistory() {
             tempStockAnalysis.push(data.events);
           });
       }
-      console.log(stockAnalysis);
-
+      // console.log(stockAnalysis);
 
       setGotStockAnalysis(true);
       setStockAnalysis(tempStockAnalysis);
@@ -61,7 +60,7 @@ export default function StockHistory() {
     if (gotStocks) {
       getAnalysisHistory();
     }
-  }, [gotStocks]);
+  }, [gotStocks, username, stocks]);
 
   const handleReadPage = () => {
     const text = document.body.innerText;
@@ -107,7 +106,7 @@ export default function StockHistory() {
             Previous Stocks
           </div>
           {stockAnalysis.map((stock) => {
-            console.log("abcdefg")
+            console.log("abcdefg");
             const values = [];
             for (const event of stock) {
               values.push({
