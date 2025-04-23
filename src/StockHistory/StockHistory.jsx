@@ -18,7 +18,7 @@ export default function StockHistory() {
 
   useEffect(() => {
     async function getStocks() {
-      await fetch(`${RETRIEVAL_ENDPOINT}/v1/list/${username}`)
+      await fetch(`${RETRIEVAL_ENDPOINT}/v1/list/${username}/`)
         .then((res) => res.json())
         .then((data) => {
           setStocks(data.Success);
@@ -33,6 +33,7 @@ export default function StockHistory() {
 
   useEffect(() => {
     async function getAnalysisHistory() {
+      const tempStockAnalysis = [];
       for (const stock of stocks) {
         if (!stock.startsWith("finance_")) {
           continue;
@@ -42,23 +43,24 @@ export default function StockHistory() {
         const stockName = stock.substring(prefixLength);
         console.log(stockName);
         await fetch(
-          `${RETRIEVAL_ENDPOINT}/v2/retrieve/${username}/finance/${stockName}`,
+          `${RETRIEVAL_ENDPOINT}/v2/retrieve/${username}/finance/${stockName}/`,
         )
           .then((res) => res.json())
           .then((data) => {
             console.log(data.events);
-            stockAnalysis.push(data.events);
+            tempStockAnalysis.push(data.events);
           });
       }
-      console.log(stockAnalysis);
+      // console.log(stockAnalysis);
+
       setGotStockAnalysis(true);
+      setStockAnalysis(tempStockAnalysis);
     }
 
     if (gotStocks) {
-      setStockAnalysis([]);
       getAnalysisHistory();
     }
-  }, [gotStocks, stockAnalysis, stocks, username]);
+  }, [gotStocks, username, stocks]);
 
   const handleReadPage = () => {
     const text = document.body.innerText;
@@ -91,7 +93,7 @@ export default function StockHistory() {
               fill="currentFill"
             />
           </svg>
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       </div>
     );
@@ -104,6 +106,7 @@ export default function StockHistory() {
             Previous Stocks
           </div>
           {stockAnalysis.map((stock) => {
+            console.log("abcdefg");
             const values = [];
             for (const event of stock) {
               values.push({
@@ -133,10 +136,10 @@ export default function StockHistory() {
             };
             return (
               <>
-                <div className="w-[80%] h-[80%] border-3 border-white mb-[6%] px-[6%] pt-[3%] py-[3%]">
+                <div className="w-[80%] h-[80%] border-3 border-white mb-[6%] px-[6%] pt-[3%] py-[3%] flex flex-wrap justify-center">
                   <h1
                     key={`h1`}
-                    className="text-3xl font-bold text-center mb-6 text-neutral-800 text-white"
+                    className="text-3xl font-bold text-center w-[100%] mb-6 text-neutral-800 text-white"
                   >
                     {stock[0].attribute["stock_name"].toUpperCase()} Stock Data
                   </h1>
