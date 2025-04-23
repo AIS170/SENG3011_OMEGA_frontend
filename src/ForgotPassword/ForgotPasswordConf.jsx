@@ -11,7 +11,7 @@ export default function ForgotPasswordConf() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const [resendConf, setResendConf] = useState(false);
+  // const [resendConf, setResendConf] = useState(false);
 
   const speak = useTextToSpeech();
 
@@ -22,42 +22,42 @@ export default function ForgotPasswordConf() {
     speak(text);
   };
 
-  async function requestResend(e) {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-    setResendConf(false);
-    try {
-      const res = await fetch(
-        "https://auth.omega-financials.com/resend_confirmation_code",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: username,
-          }),
-        },
-      );
+  // async function requestResend(e) {
+  //   e.preventDefault();
+  //   setError("");
+  //   setSuccess("");
+  //   setResendConf(false);
+  //   try {
+  //     const res = await fetch(
+  //       "https://auth.omega-financials.com/resend_confirmation_code",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           username: username,
+  //         }),
+  //       },
+  //     );
 
-      const data = await res.json();
-      console.log(res.ok, data);
-      if (res.ok) {
-        setResendConf(true);
-      } else {
-        setError(data?.message || "Unable to resend confirmation code");
-        console.error(
-          "Password Reset Conf Code Reset Error:",
-          res.status,
-          data,
-        );
-      }
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-      console.error(err);
-    }
-  }
+  //     const data = await res.json();
+  //     console.log(res.ok, data);
+  //     if (res.ok) {
+  //       setResendConf(true);
+  //     } else {
+  //       setError(data?.message || "Unable to resend confirmation code");
+  //       console.error(
+  //         "Password Reset Conf Code Reset Error:",
+  //         res.status,
+  //         data,
+  //       );
+  //     }
+  //   } catch (err) {
+  //     setError("Something went wrong. Please try again.");
+  //     console.error(err);
+  //   }
+  // }
 
   async function handleForgotPasswordConf(e) {
     e.preventDefault();
@@ -156,11 +156,11 @@ export default function ForgotPasswordConf() {
                     {error}
                   </p>
                 )}
-                {resendConf && (
+                {/* {resendConf && (
                   <p className="mb-4 text-sm text-green-600 text-center">
                     A new confirmation code has been sent
                   </p>
-                )}
+                )} */}
                 <div className="mb-4 text-center">
                   <button
                     type="submit"
@@ -170,12 +170,12 @@ export default function ForgotPasswordConf() {
                   </button>
                 </div>
                 <div className="flex items-center justify-between pt-4">
-                  <p
+                  {/* <p
                     className="hover:cursor-pointer text-sm underline text-neutral-600 dark:text-neutral-300"
                     onClick={requestResend}
                   >
                     Resend verification code
-                  </p>
+                  </p> */}
                   <button
                     type="button"
                     onClick={() => navigate("/login")}
