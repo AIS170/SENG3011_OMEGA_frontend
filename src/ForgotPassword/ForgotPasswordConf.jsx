@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { getUsername } from "../getUserDetails"
+import { useState } from "react";
 import useTextToSpeech from "../hooks/textToSpeech";
 import ConfirmCodeInput from "../Input";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -29,23 +28,30 @@ export default function ForgotPasswordConf() {
     setSuccess("");
     setResendConf(false);
     try {
-      const res = await fetch("https://auth.omega-financials.com/resend_confirmation_code", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://auth.omega-financials.com/resend_confirmation_code",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+          }),
         },
-        body: JSON.stringify({ 
-          username: username, 
-        })
-      }) 
+      );
 
       const data = await res.json();
-      console.log(res.ok, data)
+      console.log(res.ok, data);
       if (res.ok) {
         setResendConf(true);
       } else {
         setError(data?.message || "Unable to resend confirmation code");
-        console.error("Password Reset Conf Code Reset Error:", res.status, data);
+        console.error(
+          "Password Reset Conf Code Reset Error:",
+          res.status,
+          data,
+        );
       }
     } catch (err) {
       setError("Something went wrong. Please try again.");
@@ -57,25 +63,29 @@ export default function ForgotPasswordConf() {
     e.preventDefault();
     setError("");
     setSuccess("");
-    console.log(username, conf_code, password)
+    console.log(username, conf_code, password);
     try {
-      const res = await fetch("https://auth.omega-financials.com/confirm_forgot_password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://auth.omega-financials.com/confirm_forgot_password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            conf_code: conf_code,
+            new_password: password,
+          }),
         },
-        body: JSON.stringify({ 
-          username: username, 
-          conf_code: conf_code, 
-          new_password: password 
-        })
-      });
+      );
 
       const data = await res.json();
-      console.log("Peeking forgot password conf REQ", res.status, data)
+      console.log("Peeking forgot password conf REQ", res.status, data);
       if (res.ok) {
-        console.log("Successful forgot password conf REQ", res.status, data)
+        console.log("Successful forgot password conf REQ", res.status, data);
         setSuccess(data);
+        console.log(success);
         navigate("/login");
       } else {
         setError(data?.message || "Unable to confirm password reset");
@@ -85,8 +95,6 @@ export default function ForgotPasswordConf() {
       setError("Something went wrong. Please try again.");
       console.error(err);
     }
-
-
   }
   return (
     <section className="min-h-screen bg-neutral-200 dark:bg-neutral-700">
@@ -118,7 +126,8 @@ export default function ForgotPasswordConf() {
 
               <form onSubmit={handleForgotPasswordConf}>
                 <p className="mb-4 text-neutral-600 dark:text-neutral-300">
-                  You will be emailed a confirmation code. Provide it below along with a new password.
+                  You will be emailed a confirmation code. Provide it below
+                  along with a new password.
                 </p>
 
                 <div className="mb-4">
@@ -129,18 +138,18 @@ export default function ForgotPasswordConf() {
                 </div>
 
                 <div className="mb-6">
-                    <label className="block mb-1 text-sm text-neutral-700 dark:text-neutral-300">
-                      Password
-                    </label>
-                    <input
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter password"
-                      className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
-                      required
-                    />
-                </div>        
+                  <label className="block mb-1 text-sm text-neutral-700 dark:text-neutral-300">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                    className="w-full rounded border border-gray-300 p-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
+                    required
+                  />
+                </div>
 
                 {error && (
                   <p className="mb-4 text-sm text-red-500 text-center">
@@ -161,7 +170,10 @@ export default function ForgotPasswordConf() {
                   </button>
                 </div>
                 <div className="flex items-center justify-between pt-4">
-                  <p className="hover:cursor-pointer text-sm underline text-neutral-600 dark:text-neutral-300" onClick={requestResend}>
+                  <p
+                    className="hover:cursor-pointer text-sm underline text-neutral-600 dark:text-neutral-300"
+                    onClick={requestResend}
+                  >
                     Resend verification code
                   </p>
                   <button
@@ -178,13 +190,12 @@ export default function ForgotPasswordConf() {
             <div className="flex w-full items-center justify-center rounded-b-lg bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 p-8 text-white lg:w-1/2 lg:rounded-r-lg lg:rounded-bl-none">
               <div>
                 <h4 className="mb-4 text-xl font-semibold"></h4>
-                <p className="text-sm">
-                </p>
+                <p className="text-sm"></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

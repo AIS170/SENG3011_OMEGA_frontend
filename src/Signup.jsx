@@ -147,7 +147,10 @@ export default function Signup() {
                       Verify
                     </button>
                   </div>
-                  <a href="/login" className="text-sm underline text-neutral-600 dark:text-neutral-300">
+                  <a
+                    href="/login"
+                    className="text-sm underline text-neutral-600 dark:text-neutral-300"
+                  >
                     Already registered?
                   </a>
                 </form>

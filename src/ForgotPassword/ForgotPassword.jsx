@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import useTextToSpeech from "../hooks/textToSpeech";
 
-
 export default function ForgotPassword() {
   const [username, setUsername] = useState("");
 
@@ -17,18 +16,21 @@ export default function ForgotPassword() {
     setSuccess("");
 
     try {
-      const res = await fetch("https://auth.omega-financials.com/forgot_password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        "https://auth.omega-financials.com/forgot_password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username }),
         },
-        body: JSON.stringify({ username }),
-      });
+      );
 
       const data = await res.json();
-      console.log("Peeking forgot password REQ", res.status, data)
+      console.log("Peeking forgot password REQ", res.status, data);
       if (res.ok) {
-        console.log("Successful forgot password REQ", res.status, data)
+        console.log("Successful forgot password REQ", res.status, data);
         setSuccess(data);
         navigate("/conf-forgot-password", { state: { username: username } });
       } else {
@@ -103,15 +105,19 @@ export default function ForgotPassword() {
                   </button>
                 </div>
 
-
                 <div className="flex items-center justify-between pt-4">
-                  <a href="/signup" className="text-sm underline text-neutral-600 dark:text-neutral-300">
+                  <a
+                    href="/signup"
+                    className="text-sm underline text-neutral-600 dark:text-neutral-300"
+                  >
                     Don't have an account?
                   </a>
-                  <a href="/login" className="text-sm underline text-neutral-600 dark:text-neutral-300">
+                  <a
+                    href="/login"
+                    className="text-sm underline text-neutral-600 dark:text-neutral-300"
+                  >
                     Back to Login
                   </a>
-
                 </div>
               </form>
             </div>
@@ -119,8 +125,7 @@ export default function ForgotPassword() {
             <div className="flex w-full items-center justify-center rounded-b-lg bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 p-8 text-white lg:w-1/2 lg:rounded-r-lg lg:rounded-bl-none">
               <div>
                 <h4 className="mb-4 text-xl font-semibold"></h4>
-                <p className="text-sm">
-                </p>
+                <p className="text-sm"></p>
               </div>
             </div>
           </div>

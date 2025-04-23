@@ -17,7 +17,6 @@ import StockHistory from "./StockHistory/StockHistory";
 import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import ForgotPasswordConf from "./ForgotPassword/ForgotPasswordConf";
 
-
 const App = () => {
   return (
     <Router>
@@ -85,18 +84,8 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        <Route
-          path="/forgot-password"
-          element={
-            <ForgotPassword />
-          }
-        />
-        <Route
-          path="/conf-forgot-password"
-          element={
-            <ForgotPasswordConf />
-          }
-        />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/conf-forgot-password" element={<ForgotPasswordConf />} />
       </Routes>
     </Router>
   );
