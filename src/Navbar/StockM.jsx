@@ -62,7 +62,7 @@ export default function StockM() {
 
   return (
     <>
-      <Navbar currPage="Stock Market" />
+      <Navbar currPage="Stock Search" />
       <div className="bg-black min-h-screen text-white px-4 py-10 flex flex-col items-center justify-start">
         <h1 className="text-4xl font-bold mb-6 text-center">
           Search a Company to View Stock

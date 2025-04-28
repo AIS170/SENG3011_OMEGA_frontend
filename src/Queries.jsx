@@ -19,7 +19,7 @@ export default function Queries() {
 
   return (
     <>
-      <Navbar />
+      <Navbar currPage={"Help"}/>
 
       <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4">
         <h1 className="text-2xl font-bold mb-4 text-neutral-800 dark:text-white">
