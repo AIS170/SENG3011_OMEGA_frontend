@@ -107,7 +107,7 @@ const Service = () => {
           />
 
           <ServiceCard
-            title="Get Started"
+            title="Help"
             details="For new members. Learn how to use OMEGA to brighten your investing future."
             icon={
               <svg
