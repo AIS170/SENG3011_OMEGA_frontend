@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useTextToSpeech from "./hooks/textToSpeech";
+import Navbar from "./Navbar/Navbar";
 
 export default function Queries() {
   const [query, setQuery] = useState("");
@@ -17,6 +18,9 @@ export default function Queries() {
   };
 
   return (
+    <>
+      <Navbar />
+    
     <div className="min-h-screen bg-neutral-100 dark:bg-neutral-900 flex flex-col items-center justify-center px-4">
       <h1 className="text-2xl font-bold mb-4 text-neutral-800 dark:text-white">
         What do you need help with?
@@ -55,5 +59,6 @@ export default function Queries() {
         🗣️
       </button>
     </div>
+    </>
   );
 }
