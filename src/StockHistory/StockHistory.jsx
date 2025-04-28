@@ -100,7 +100,7 @@ export default function StockHistory() {
   } else {
     return (
       <>
-        <Navbar currPage={"Stock History"}/>
+        <Navbar currPage={"Stock History"} />
         <div className="min-h-screen bg-black flex flex-col items-center justify-center px-4 py-10">
           <div className="border-b-4 border-indigo-500  text-white text-5xl font-semibold mt-[2%] mb-[3%]">
             Previous Stocks
